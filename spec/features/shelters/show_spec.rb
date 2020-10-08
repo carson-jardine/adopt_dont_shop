@@ -15,17 +15,17 @@ describe 'As a visitor' do
                                 zip:      "80231")
       visit "/shelters/#{shelter_1.id}"
 
-      expect(page).to have_content("Address: #{shelter_1.address}")
-      expect(page).to have_content("City: #{shelter_1.city}")
-      expect(page).to have_content("State: #{shelter_1.state}")
-      expect(page).to have_content("Zip: #{shelter_1.zip}")
+      expect(page).to have_content("#{shelter_1.address}")
+      expect(page).to have_content("#{shelter_1.city}")
+      expect(page).to have_content("#{shelter_1.state}")
+      expect(page).to have_content("#{shelter_1.zip}")
 
       visit "/shelters/#{shelter_2.id}"
 
-      expect(page).to have_content("Address: #{shelter_2.address}")
-      expect(page).to have_content("City: #{shelter_2.city}")
-      expect(page).to have_content("State: #{shelter_2.state}")
-      expect(page).to have_content("Zip: #{shelter_2.zip}")
+      expect(page).to have_content("#{shelter_2.address}")
+      expect(page).to have_content("#{shelter_2.city}")
+      expect(page).to have_content("#{shelter_2.state}")
+      expect(page).to have_content("#{shelter_2.zip}")
     end
   end
-end 
+end
