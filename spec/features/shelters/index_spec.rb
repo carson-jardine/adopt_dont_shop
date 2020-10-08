@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'As a visitor' do 
+describe 'As a visitor' do
   describe 'When I visit /shelters' do
     it "the visitor sees the name of each shetler in the system" do
       shelter_1 = Shelter.create(name:    "The Feline Fix",
@@ -15,9 +15,8 @@ describe 'As a visitor' do
                                 zip:      "80231")
       visit "/shelters"
 
-      expect(page).to have_content(shelter_1.name)
-      expect(page).to have_content(shelter_2.name)
+      expect(page).to have_content("#{shelter_1.name}")
+      expect(page).to have_content("#{shelter_2.name}")
     end
-
   end
 end
