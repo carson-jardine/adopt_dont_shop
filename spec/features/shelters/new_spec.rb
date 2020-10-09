@@ -2,16 +2,17 @@ require 'rails_helper'
 
 describe 'As a visitor' do
   describe 'When I visit /shelter' do
-    it "user can navigate to New Shelter page" do
+    it "User can navigate to New Shelter page" do
       visit "/shelters"
       click_on "New Shelter"
+
       expect(page).to have_content("Enter a New Shelter:")
       expect(page).to have_button("Create Shelter")
     end
   end
 
   describe 'When I visit /shelter/new' do
-    it "user can fill out a form" do
+    it "User can fill out a form" do
       visit "/shelters/new"
 
       fill_in "shelter[name]",    with: "The Feline Fix"
