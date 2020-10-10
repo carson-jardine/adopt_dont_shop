@@ -18,6 +18,7 @@ describe 'As a visitor' do
     it "the visitor sees the shelter with that id and its name, address, city, state, and zip" do
       visit "/shelters/#{@shelter_1.id}"
 
+      expect(page).to have_content("#{@shelter_1.name}")
       expect(page).to have_content("#{@shelter_1.address}")
       expect(page).to have_content("#{@shelter_1.city}")
       expect(page).to have_content("#{@shelter_1.state}")
@@ -25,6 +26,7 @@ describe 'As a visitor' do
       # could be broken into different tests
       visit "/shelters/#{@shelter_2.id}"
 
+      expect(page).to have_content("#{@shelter_2.name}")
       expect(page).to have_content("#{@shelter_2.address}")
       expect(page).to have_content("#{@shelter_2.city}")
       expect(page).to have_content("#{@shelter_2.state}")
