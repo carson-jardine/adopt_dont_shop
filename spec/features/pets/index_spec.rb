@@ -13,13 +13,13 @@ describe 'As a visitor' do
         name:  "Louis",
         approximate_age: 2,
         sex: "Male",
-        shelter_name: "The Dumb Friends League")
+        shelter_id: "#{@shelter_1.id}")
     @pet_2 = Pet.create(
         image: "http://cdn.akc.org/content/article-body-image/wirehaired_pointing_griffon_cute_puppies.jpg",
         name:  "Charlie",
         approximate_age: 5,
         sex: "Male",
-        shelter_name: "The Dumb Friends League")
+        shelter_id: "#{@shelter_1.id}")
   end
 
   describe 'When I visit /pets' do
@@ -31,7 +31,7 @@ describe 'As a visitor' do
       expect(page).to have_content("#{@pet_1.name}")
       expect(page).to have_content("#{@pet_1.approximate_age}")
       expect(page).to have_content("#{@pet_1.sex}")
-      expect(page).to have_content("#{@pet_1.shelter_name}")
+      expect(page).to have_content("#{@pet_1.shelter.name}")
     end
   end
 end
