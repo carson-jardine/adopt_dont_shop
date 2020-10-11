@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: rgb(224, 204, 243);
+  overflow: hidden;
+}
+
+.topnav a {
+  color: black;
+  display: inline-block;
+  text-align: center;
+  padding: 14px 16px;
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+}
+
+.content {
+  text-align: center;
+  font-size: 20px;
+}
+
+.h1 {
+  text-align: center;
+}
