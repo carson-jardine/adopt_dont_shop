@@ -24,7 +24,7 @@ describe 'As a visitor' do
     it "The visitor can fill out a form" do
       visit "/shelters/#{@shelter_1.id}/pets/new"
 
-      fill_in "pet[imapproximate_age]", with: "http://cdn.akc.org/content/hero/cute_puppies_hero.jpg"
+      fill_in "pet[image]", with: "http://cdn.akc.org/content/hero/cute_puppies_hero.jpg"
       fill_in "pet[name]", with: "Louis"
       fill_in "pet[description]", with: "A very cute floof"
       fill_in "pet[approximate_age]", with: 2

@@ -5,3 +5,4 @@
 <p>Gender: <%= @pet.sex %></p>
 <p>Adoption Status: <%= @pet.adoption_status %></p>
 <p> Located At: <a href="/shelters/<%= @pet.shelter_id %>"><%= @pet.shelter.name %></a></p>
+<a href="/pets/<%= @pet.id %>/edit">Update Pet</a>
