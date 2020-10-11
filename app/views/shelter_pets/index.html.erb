@@ -1,4 +1,6 @@
 <h1>Available Pets!</h1>
+<h6><%= link_to 'View all Pets', '/pets' %></h6>
+<h6><%= link_to 'View all Shelters', '/shelters' %></h6>
 
 <%= link_to "Create Pet", "/shelters/#{@shelter.id}/pets/new" %>
 <%= @shelter.pets.each do |pet| %>

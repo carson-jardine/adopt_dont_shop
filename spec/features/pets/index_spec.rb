@@ -59,7 +59,7 @@ describe 'As a visitor' do
       click_link("Delete: #{@pet_3.name}")
       expect(current_path).to eq("/pets")
 
-      expect(page).to_not have_content("View: #{@pet_3}.name")
+      expect(page).to_not have_content("Meet #{@pet_3.name}!")
     end
   end
 end
