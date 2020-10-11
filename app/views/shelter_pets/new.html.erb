@@ -2,6 +2,7 @@
 
 <form action="/shelters/<%= @shelter.id %>/pets" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <p>Enter a New Pet:</p>
   <input type='text' name='pet[image]' value='Pet Image'/><br/>
   <input type='text' name='pet[name]' value='Name'/><br/>
   <input type='text' name='pet[description]' value='Description'/><br/>
