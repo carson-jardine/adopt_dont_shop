@@ -46,7 +46,7 @@ describe 'As a visitor' do
       expect(current_path).to eq("/pets/#{@pet_2.id}")
 
       pet = Pet.last
-      expect(page).to have_xpath("//img[contains(@src,'#{@pet_2.image}')]")
+      expect(page).to have_xpath("//img[contains(@src,'#{pet.image}')]")
       expect(pet.name).to eq("Blueberry")
       expect(pet.description).to eq("A little tiny baby dog")
       expect(pet.approximate_age).to eq(1)
