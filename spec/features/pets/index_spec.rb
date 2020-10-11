@@ -21,6 +21,12 @@ describe 'As a visitor' do
           approximate_age: 5,
           sex: "Male",
           shelter_id: "#{@shelter_1.id}")
+      @pet_3 = Pet.create(
+          image: "http://cdn.akc.org/content/article-body-image/irish_setter_cute_puppies.jpg",
+          name:  "Colby",
+          approximate_age: 12,
+          sex: "Male",
+          shelter_id: "#{@shelter_1.id}")
     end
 
     it "The visitor sees the details about each pet in system" do
@@ -42,6 +48,18 @@ describe 'As a visitor' do
 
       click_link("Edit: #{@pet_1.name}")
       expect(current_path).to eq("/pets/#{@pet_1.id}/edit")
+    end
+
+    it "The visitor sees a delete link next to each shelter" do
+      visit "/pets"
+
+      expect(page).to have_link("Delete: #{@pet_1.name}")
+      expect(page).to have_link("Delete: #{@pet_2.name}")
+
+      click_link("Delete: #{@pet_3.name}")
+      expect(current_path).to eq("/pets")
+
+      expect(page).to_not have_content("View: #{@pet_3}.name")
     end
   end
 end
