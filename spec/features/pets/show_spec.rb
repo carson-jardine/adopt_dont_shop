@@ -34,7 +34,7 @@ describe 'As a visitor' do
       expect(page).to have_content(pet_1.approximate_age)
       expect(page).to have_content(pet_1.sex)
       expect(page).to have_content(pet_1.adoption_status)
-      expect(page).to have_link(pet.shelter.name)
+      expect(page).to have_link(pet_1.shelter.name)
     end
   end
 
