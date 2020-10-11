@@ -4,8 +4,9 @@
   <h2><a href="/pets/<%= pet.id %>"><%= pet.name %></a></h2>
     <img src="<%= pet.image %>" />
     <ul>
-      <li><%= pet.approximate_age %></li>
-      <li><%= pet.sex %></li>
-      <li><a href="/shelters/<%= pet.shelter_id %>"><%= pet.shelter.name %></a></li>
+      <li>Approximate Age: <%= pet.approximate_age %></li>
+      <li>Gender: <%= pet.sex %></li>
+      <li>Located at: <a href="/shelters/<%= pet.shelter_id %>"><%= pet.shelter.name %></a></li>
+      <li><a href="/pets/<%= pet.id %>/edit">Edit: <%= pet.name %></a></li>
     </ul>
 <% end %>
