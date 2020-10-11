@@ -1,9 +1,12 @@
 <h1>All Shelters</h1>
+<h6><%= link_to 'View all Pets', '/pets' %></h6>
 
-<a href="/shelters/new">New Shelter</a>
+<h3><a href="/shelters/new">New Shelter</a></h3>
 <% @shelters.each do |shelter| %>
   <h2><a href="/shelters/<%= shelter.id %>">View: <%= shelter.name %></a></h2><br/>
-  <a href="/shelters/<%= shelter.id %>/edit">Edit: <%= shelter.name %></a>
-  <%= link_to name= "Delete: #{shelter.name}", "/shelters/#{shelter.id}", method: 'delete' %>
+  <ul>
+    <li><a href="/shelters/<%= shelter.id %>/edit">Edit: <%= shelter.name %></a></li>
+    <li><%= link_to name= "Delete: #{shelter.name}", "/shelters/#{shelter.id}", method: 'delete' %></li>
+  </ul>
 
 <% end %>
