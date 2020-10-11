@@ -32,4 +32,26 @@ describe 'As a visitor' do
     end
   end
 
+  describe 'When I visit /pets/:id/edit' do
+    it "The visitor can fill in form to update pet info" do
+      visit "/pets/#{@pet_2.id}/edit"
+
+      fill_in "pet[image]", with: "http://cdn.akc.org/content/article-body-image/shih_tzu_cute_puppies.jpg"
+      fill_in "pet[name]", with: "Blueberry"
+      fill_in "pet[description]", with: "A little tiny baby dog"
+      fill_in "pet[approximate_age]", with: 1
+      fill_in "pet[sex]", with: "Female"
+      click_on "Submit"
+
+      expect(current_path).to eq("/pets/#{@pet_2.id}")
+
+      pet = Pet.last
+      expect(page).to have_xpath("//img[contains(@src,'#{@pet_2.image}')]")
+      expect(pet.name).to eq("Blueberry")
+      expect(pet.description).to eq("A little tiny baby dog")
+      expect(pet.approximate_age).to eq(1)
+      expect(pet.sex).to eq("Female")
+    end
+  end
+
 end
