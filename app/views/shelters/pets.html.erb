@@ -1,6 +1,6 @@
-<h1>All Pets</h1>
+<h1>Available Pets!</h1>
 
-<% @pets.each do |pet| %>
+<%= @shelter.pets.each do |pet| %>
   <h2><a href="/pets/<%= pet.id %>"><%= pet.name %></a></h2>
     <img src="<%= pet.image %>" />
     <ul>
