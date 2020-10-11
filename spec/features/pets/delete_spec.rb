@@ -21,6 +21,14 @@ describe 'As a visitor' do
         sex: "Male",
         shelter_id: "#{@shelter_1.id}")
   end
+  describe 'When I visit /pets/id' do
+    it "The visitor can delete a pet" do
+      visit "/pets/#{@pet_1.id}"
+      click_on "Delete Pet"
 
+      expect(current_path).to eq("/pets")
+      expect(page).to_not have_content("Louis")
+    end
+  end
 
 end
