@@ -1,12 +1,17 @@
-<h6><%= link_to 'View all Pets', '/pets' %></h6>
-<h6><%= link_to 'View all Shelters', '/shelters' %></h6>
+<div class="topnav">
+  <a class="active" href="/">Home</a>
+  <a href="/pets">View All Pets</a>
+  <a href="/shelters">View All Shelters</a>
+</div>
+
 
 <h1><%= @shelter.name %></h1>
-<h3>Address:</h3>
-<p><%= @shelter.address %></p>
-<p><%= @shelter.city %></p>
-<p><%= @shelter.state %></p>
-<p><%= @shelter.zip %></p>
+<div class="h3">
+  <h3>Address:</h3>
+  <p><%= @shelter.address %></p>
+  <p><%= @shelter.city %>, <%= @shelter.state %></p>
+  <p><%= @shelter.zip %></p>
+</div>
 
 <%= button_to "View All Available Pets!", "/shelters/#{@shelter.id}/pets", method:'get' %><br>
 <%= button_to "Update Shelter", "/shelters/#{@shelter.id}/edit", method:'get' %><br>
