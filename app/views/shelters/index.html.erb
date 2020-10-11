@@ -1,12 +1,16 @@
-<h1>All Shelters</h1>
-<h6><%= link_to 'View all Pets', '/pets' %></h6>
+<div class="h1">
+  <h1>All Shelters</h1>
+</div>
 
-<h3><a href="/shelters/new">New Shelter</a></h3>
+<div class="topnav">
+  <a class="active" href="/">Home</a>
+  <a href="/pets">View All Pets</a>
+  <a href="/shelters">View All Shelters</a>
+  <a href="/shelters/new">Add New Shelter</a>
+</div>
+
 <% @shelters.each do |shelter| %>
   <h2><a href="/shelters/<%= shelter.id %>">View: <%= shelter.name %></a></h2><br/>
-  <ul>
-    <li><a href="/shelters/<%= shelter.id %>/edit">Edit: <%= shelter.name %></a></li>
-    <li><%= link_to name= "Delete: #{shelter.name}", "/shelters/#{shelter.id}", method: 'delete' %></li>
-  </ul>
-
+  <a href="/shelters/<%= shelter.id %>/edit">Edit: <%= shelter.name %></a>
+  <%= link_to name= "Delete: #{shelter.name}", "/shelters/#{shelter.id}", method: 'delete' %>
 <% end %>
