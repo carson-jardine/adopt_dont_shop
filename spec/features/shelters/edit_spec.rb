@@ -16,7 +16,7 @@ describe 'As a visitor' do
       visit "/shelters/#{@shelter_1.id}"
       click_on "Update Shelter"
 
-      expect(page).to have_content("Edit Shelter Info:")
+      expect(page).to have_content("Edit #{@shelter_1.name} Info:")
       expect(page).to have_button("Submit")
     end
   end

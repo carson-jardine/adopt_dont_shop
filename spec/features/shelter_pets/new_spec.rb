@@ -13,7 +13,7 @@ describe 'As a visitor' do
   describe 'When I visit /shelters/shelter_id/pets' do
     it "The visitor can navigate to New Pet approximate_age" do
       visit "/shelters/#{@shelter_1.id}/pets"
-      click_link("Create Pet")
+      click_link("Add a New Pet")
 
       expect(page).to have_content("Enter a New Pet:")
       expect(page).to have_button("Create Pet")
