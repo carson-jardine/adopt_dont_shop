@@ -1,5 +1,8 @@
-<h6><%= link_to 'View all Pets', '/pets' %></h6>
-<h6><%= link_to 'View all Shelters', '/shelters' %></h6>
+<div class="topnav">
+  <a class="active" href="/">Home</a>
+  <a href="/pets">View All Pets</a>
+  <a href="/shelters">View All Shelters</a>
+</div>
 
 <form action="/shelters" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
