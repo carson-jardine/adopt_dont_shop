@@ -8,7 +8,7 @@
   <a href="/shelters/<%= @shelter.id %>/pets/new">Add a New Pet</a>
 </div>
 
-<%= @shelter.pets.each do |pet| %>
+<% @shelter.pets.each do |pet| %>
   <h2><a href="/pets/<%= pet.id %>">Meet <%= pet.name %>!</a></h2>
     <img src="<%= pet.image %>" />
 
