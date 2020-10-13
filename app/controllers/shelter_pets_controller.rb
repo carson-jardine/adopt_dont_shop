@@ -1,6 +1,7 @@
 class ShelterPetsController < ApplicationController
   def index
     @shelter = Shelter.find(params[:id])
+    #VVV not necessary can do .shelter.pets
     @pets = Shelter.find(params[:id]).pets
   end
 
@@ -19,7 +20,7 @@ class ShelterPetsController < ApplicationController
             adoption_status: "Adopatable"
             })
     pet.save
-
+    #pet.save! is better bc it will throw an error if something is entered in incorrectly 
     redirect_to "/shelters/#{params[:id]}/pets"
   end
 
