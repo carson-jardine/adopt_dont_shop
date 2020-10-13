@@ -3,14 +3,16 @@
 </div>
 
 <div class="topnav">
-  <a class="active" href="/">Home</a>
-  <a href="/pets">View All Pets</a>
-  <a href="/shelters">View All Shelters</a>
-  <a href="/shelters/new">Add New Shelter</a>
+  <%= link_to "Home", '/' %>
+  <%= link_to "View All Pets", '/pets' %>
+  <%= link_to "View All Shelters", '/shelters' %>
+  <%= link_to "Add New Shelter", '/shelters/new' %>
 </div>
 
 <% @shelters.each do |shelter| %>
-  <h2><a href="/shelters/<%= shelter.id %>">View: <%= shelter.name %></a></h2><br/>
+  <h2> <%= link_to "View: #{shelter.name}", "/shelters/#{shelter.id}"%></h2>
+  <%= link_to "" %>
+  <% # LEFT OFF ADDING EDIT LINK  %>
   <a href="/shelters/<%= shelter.id %>/edit">Edit: <%= shelter.name %></a>
-  <%= link_to name= "Delete: #{shelter.name}", "/shelters/#{shelter.id}", method: 'delete' %>
+    <%= link_to name= "Delete: #{shelter.name}", "/shelters/#{shelter.id}", method: 'delete' %>
 <% end %>
