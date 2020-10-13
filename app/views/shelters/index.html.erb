@@ -11,8 +11,6 @@
 
 <% @shelters.each do |shelter| %>
   <h2> <%= link_to "View: #{shelter.name}", "/shelters/#{shelter.id}"%></h2>
-  <%= link_to "" %>
-  <% # LEFT OFF ADDING EDIT LINK  %>
-  <a href="/shelters/<%= shelter.id %>/edit">Edit: <%= shelter.name %></a>
-    <%= link_to name= "Delete: #{shelter.name}", "/shelters/#{shelter.id}", method: 'delete' %>
+  <%= link_to "Edit: #{shelter.name}", "/shelters/#{shelter.id}/edit"  %>
+  <%= link_to "Delete: #{shelter.name}", "/shelters/#{shelter.id}", method: 'delete' %>
 <% end %>
