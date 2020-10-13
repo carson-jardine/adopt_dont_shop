@@ -34,8 +34,10 @@ describe 'As a visitor' do
 
       expect(current_path).to eq("/shelters/#{@shelter_1.id}/pets")
       expect(page).to have_content("Louis")
-
       pet = Pet.last
+      #expect(page).to have_content(pet.name) etc.
+      #within helper => research
+      # vvvv model testing 
       expect(pet.name).to eq("Louis")
       expect(pet.description).to eq("A very cute floof")
       expect(pet.approximate_age).to eq(2)

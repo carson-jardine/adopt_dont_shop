@@ -3,7 +3,6 @@ require 'rails_helper'
 describe 'As a visitor' do
   describe 'When I visit /shelters/:id' do
     before :each do
-      #let block lazy load rspec
       @shelter_1 = Shelter.create(name:    "The Feline Fix",
         address:  "6075 Parkway Drive",
         city:     "Denver",
@@ -23,7 +22,7 @@ describe 'As a visitor' do
       expect(page).to have_content("#{@shelter_1.city}")
       expect(page).to have_content("#{@shelter_1.state}")
       expect(page).to have_content("#{@shelter_1.zip}")
-      # could be broken into different tests
+
       visit "/shelters/#{@shelter_2.id}"
 
       expect(page).to have_content("#{@shelter_2.name}")
