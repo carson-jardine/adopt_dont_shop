@@ -1,16 +1,19 @@
 <div class="topnav">
-  <a class="active" href="/">Home</a>
-  <a href="/pets">View All Pets</a>
-  <a href="/shelters">View All Shelters</a>
+  <%= link_to "Home", '/' %>
+  <%= link_to "View All Pets", '/pets' %>
+  <%= link_to "View All Shelters", '/shelters' %>
 </div>
 
-<form action="/shelters" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <p>Enter a New Shelter:</p>
-  <input type='text' name='shelter[name]' value='Name'/><br/>
-  <input type='text' name='shelter[address]' value='Address'/><br/>
-  <input type='text' name='shelter[city]' value='City'/><br/>
-  <input type='text' name='shelter[state]' value='State'/><br/>
-  <input type='text' name='shelter[zip]' value='Zip'/><br/>
-  <input type='submit' value='Create Shelter'/>
-</form>
+<%= form_tag '/shelters' do  %>
+  <%= label_tag 'Name' %>
+  <%= text_field_tag 'shelter[name]' %><br/>
+  <%= label_tag 'Address' %>
+  <%= text_field_tag 'shelter[address]' %><br/>
+  <%= label_tag 'City' %>
+  <%= text_field_tag 'shelter[city]' %><br/>
+  <%= label_tag 'State' %>
+  <%= text_field_tag 'shelter[state]' %><br/>
+  <%= label_tag 'Zip' %>
+  <%= text_field_tag 'shelter[zip]' %><br/>
+  <%= submit_tag 'Create Shelter' %>
+<% end %>
