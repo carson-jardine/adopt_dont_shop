@@ -1,0 +1,22 @@
+<div class="topnav">
+  <%= link_to "Home", '/' %>
+  <%= link_to "View All Pets", '/pets' %>
+  <%= link_to "View All Shelters", '/shelters' %>
+</div>
+
+<p>Enter a New Review:</p>
+<%= form_tag "/shelters/#{@shelter.id}" do  %>
+  <%= label_tag 'Title' %>
+  <%= text_field_tag 'review[title]' %><br/>
+  <%= label_tag 'Rating' %>
+  <%= text_field_tag 'review[rating]' %><br/>
+  <%= label_tag 'Content' %>
+  <%= text_field_tag 'review[content]' %><br/>
+ <%= select_tag 'review[user_id]', options_from_collection_for_select(@users, :id, :name), class: 'form-select'%>
+  <%= label_tag 'Optional Image' %>
+  <%= text_field_tag 'review[optional_image]' %><br/>
+  <%= submit_tag 'Submit Review' %>
+  <input type='hidden' name="review[shelter_id]" value="<%=@shelter.id%>"><br><br>
+
+<% end %>
+

@@ -14,16 +14,17 @@
 </div>
 
 <h1>Reviews:</h1>
-<%= binding.pry %>
+
 <% @shelter.reviews.each do |review| %>
 
   <h3><%= review.title %></h3>
-  <img src= <%= review.image %> />
+  <%= image_tag review.optional_image if review.optional_image %>
   <p>Rating: <%= review.rating %></p>
   <p>Review: <%= review.content %></p>
   <p>Reviewed By: <%= review.user.name %></p>
 <% end %>
 
+<%= button_to "Add Review", "/shelters/#{@shelter.id}/reviews/new", method:'get' %><br>
 <%= button_to "View All Available Pets!", "/shelters/#{@shelter.id}/pets", method:'get' %><br>
 <%= button_to "Update Shelter", "/shelters/#{@shelter.id}/edit", method:'get' %><br>
 <%= button_to "Delete Shelter", "/shelters/#{@shelter.id}", method:'delete', data: {confirm: "Please confirm you would like to delete #{@shelter.name}"} %>

@@ -2,21 +2,63 @@ require 'rails_helper'
 
 describe 'As a visitor' do
   describe 'When I visit /user/id' do
-    it "shows all of the user's information" do
-      user_1 = User.create(
+    before :each do
+    @user_1 = User.create!(
         name:     "Mike Dao",
         address:  "123 Taylor Swift Ave",
         city:     "Denver",
         state:    "CO",
         zip:      "80213")
+    @review_1 = Review.create!({
+        title: "Best Place Ever",
+        rating: 5,
+        content: "The vets were nice af",
+        #optional_image: "https://sayingimages.com/wp-content/uploads/You-Got-It-meme.jpg",
+        reviewer_name: "#{@user_1.name}",
+        user_id: "#{@user_1.id}",
+        shelter_id: "#{@shelter_2.id}"})
+    @review_2 = Review.create!({
+        title: "Worst Place Ever",
+        rating: 1,
+        content: "The vets were stupid af af",
+        #optional_image: "https://sayingimages.com/wp-content/uploads/You-Got-It-meme.jpg",
+        reviewer_name: "#{@user_1.name}",
+        user_id: "#{@user_1.id}",
+        shelter_id: "#{@shelter_1.id}"})
+    @shelter_1 = Shelter.create({
+        name:    "The Feline Fix",
+        address:  "6075 Parkway Drive",
+        city:     "Denver",
+        state:    "CO",
+        zip:      "80022"})
+    @shelter_2 = Shelter.create({
+          name:    "The Dumb Friends League",
+          address:  "2080 S Quebec Street",
+          city:     "Denver",
+          state:    "CO",
+          zip:      "80231"})
+    end
+    it "shows all of the user's information" do
 
       visit "/users/#{user_1.id}"
 
-      expect(page).to have_content("#{user_1.name}")
-      expect(page).to have_content("#{user_1.address}")
-      expect(page).to have_content("#{user_1.city}")
-      expect(page).to have_content("#{user_1.state}")
-      expect(page).to have_content("#{user_1.zip}")
+      expect(page).to have_content("#{@user_1.name}")
+      expect(page).to have_content("#{@user_1.address}")
+      expect(page).to have_content("#{@user_1.city}")
+      expect(page).to have_content("#{@user_1.state}")
+      expect(page).to have_content("#{@user_1.zip}")
+    end
+
+    it "shows all of the reviews with the review information" do 
+      
+      visit "/users/#{user_1.id}"
+
+      expect(page).to have_content("#{@review_1.name}")
+      expect(page).to have_content("#{@review_1.address}")
+      expect(page).to have_content("#{@review_1.city}")
+      expect(page).to have_content("#{@review_1.state}")
+      expect(page).to have_content("#{@review_1.zip}")
+
     end
   end
 end
