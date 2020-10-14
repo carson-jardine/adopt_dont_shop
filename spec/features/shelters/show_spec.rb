@@ -31,5 +31,41 @@ describe 'As a visitor' do
       expect(page).to have_content("#{@shelter_2.state}")
       expect(page).to have_content("#{@shelter_2.zip}")
     end
+
+    it "User can see a list of reviews for given shelter" do
+      visit "/shelters/#{@shelter_2.id}"
+
+      user_1 = User.create(
+        name:     "Mike Dao",
+        address:  "123 Taylor Swift Ave",
+        city:     "Denver",
+        state:    "CO",
+        zip:      "80213")
+
+      review_1 = Review.new(
+        title: "Best Place Ever",
+        rating: 5,
+        content: "The vets were nice af",
+        optional_image: "no",
+        reviewer_name: "#{user_1.name}"
+      )
+
+      expect(page).to have_content("#{review_1.title}")
+      expect(page).to have_content("#{review_1.rating}")
+      expect(page).to have_content("#{review_1.content}")
+      expect(page).to have_content("#{review_1.optional_image}")
+      expect(page).to have_content("#{review_1.reviewer_name}")
+
+    end
   end
 end
+
+# As a visitor,
+# When I visit a shelter's show page,
+# I see a list of reviews for that shelter
+# Each review will have:
+# - title
+# - rating
+# - content
+# - an optional picture
+# - the name of the user that wrote the review
