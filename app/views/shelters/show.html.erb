@@ -22,6 +22,7 @@
   <p>Rating: <%= review.rating %></p>
   <p>Review: <%= review.content %></p>
   <p>Reviewed By: <%= review.user.name %></p>
+  <%= button_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit", method:'get' %><br>
 <% end %>
 
 <%= button_to "Add Review", "/shelters/#{@shelter.id}/reviews/new", method:'get' %><br>
