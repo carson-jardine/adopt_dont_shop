@@ -23,6 +23,8 @@
   <p>Review: <%= review.content %></p>
   <p>Reviewed By: <%= review.user.name %></p>
   <%= button_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit", method:'get' %><br>
+  <%= button_to "Delete Review", "/shelters/#{@shelter.id}/reviews/#{review.id}", method:'delete', data: {confirm: "Please confirm you would like to delete #{review.reviewer_name}"} %>
+
 <% end %>
 
 <%= button_to "Add Review", "/shelters/#{@shelter.id}/reviews/new", method:'get' %><br>
