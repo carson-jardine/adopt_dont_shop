@@ -22,11 +22,11 @@ describe 'As a visitor' do
         state:    "CO",
         zip:      "80213"})
 
-      @review_1 = Review.new({
+      @review_1 = Review.create({
         title: "Best Place Ever",
         rating: 5,
         content: "The vets were nice af",
-        optional_image: "no",
+        optional_image: "https://sayingimages.com/wp-content/uploads/You-Got-It-meme.jpg",
         reviewer_name: "#{@user_1.name}",
         user_id: "#{@user_1.id}",
         shelter_id: "#{@shelter_2.id}"})
@@ -56,9 +56,9 @@ describe 'As a visitor' do
       expect(page).to have_content("#{@review_1.title}")
       expect(page).to have_content("#{@review_1.rating}")
       expect(page).to have_content("#{@review_1.content}")
-      expect(page).to have_content("#{@review_1.optional_image}")
+      expect(page).to have_xpath("//img[@src='#{@review_1.optional_image}']")
       expect(page).to have_content("#{@review_1.reviewer_name}")
 
+      end
     end
   end
-end
