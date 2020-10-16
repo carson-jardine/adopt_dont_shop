@@ -6,18 +6,14 @@ class ShelterReviewsController < ApplicationController
   end
   def create
             
-          shelter = Shelter.find(params[:shelter_id])  
-          @review = Review.create(
-            title: params[:review][:title],
-            rating: params[:review][:rating],
-            content: params[:review][:content],
-            reviewer_name: params[:review][:reviewer_name],
-            optional_image: params[:review][:optional_image],
-            shelter_id: params[:review][:shelter_id],
-            user_id: params[:review][:user_id]
-            )
-    @review.save!
-    redirect_to "/shelters/#{shelter.id}"
+    @shelter = Shelter.find(params[:shelter_id])  
+    @review = Review.new(review_params)
+    if @review.save
+      redirect_to "/shelters/#{@shelter.id}"
+    else 
+      flash[:notice] = "Review not created: Required information missing."
+      render :new
+    end
   end
 
   def edit
@@ -39,7 +35,7 @@ class ShelterReviewsController < ApplicationController
               optional_image: params[:review][:optional_image]
               })
 
-    review.save
+
 
     redirect_to "/shelters/#{shelter.id}"
     
@@ -49,5 +45,10 @@ class ShelterReviewsController < ApplicationController
     shelter = Shelter.find(params[:shelter_id])
     Review.destroy(params[:review_id])
     redirect_to "/shelters/#{shelter.id}"
+  end
+
+  private 
+  def review_params
+    params.permit(:title, :rating, :content, :reviewer_name, :optional_image)
   end
 end
