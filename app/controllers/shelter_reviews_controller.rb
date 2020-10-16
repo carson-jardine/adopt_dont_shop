@@ -5,11 +5,13 @@ class ShelterReviewsController < ApplicationController
           @users = User.all
   end
   def create
+    
     @users = User.all
     @shelter = Shelter.find(params[:shelter_id])  
     @review = Review.new(review_params)
-   require 'pry'; binding.pry
+   
     if @review.save
+      
       redirect_to "/shelters/#{@shelter.id}"
     else 
       flash[:notice] = "Review not created: Required information missing."
@@ -49,7 +51,8 @@ class ShelterReviewsController < ApplicationController
   end
 
   private 
+  
   def review_params
-    params.permit(:title, :rating, :content, :user_id)
+    params.permit(:title, :review, :rating, :content, :user_id, :shelter_id, :optional_image, :reviewer_name)
   end
 end
