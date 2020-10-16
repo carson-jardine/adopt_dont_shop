@@ -9,14 +9,14 @@
   <input type="hidden" name="_method" value="PATCH" />
   <p>Edit Review:</p>
   <label for="review[title]"><b>Title:</b></label><br>
-  <input type='text' name='review[title]' value="<%= @review.title %>"/><br/>
+  <input type='text' name='title' value="<%= @review.title %>"/><br/>
   <label for="review[rating]"><b>Rating:</b></label><br>
-  <input type='text' name='review[rating]' value="<%= @review.rating %>"/><br/>
+  <input type='text' name='rating' value="<%= @review.rating %>"/><br/>
   <label for="review[content]"><b>Content:</b></label><br>
-  <input type='text' name='review[content]' value="<%= @review.content %>"/><br/>
+  <input type='text' name='content' value="<%= @review.content %>"/><br/>
   <label for="review[optional_image]"><b>Optional Image:</b></label><br>
-  <input type='text' name='review[optional_image]' value="<%= @review.optional_image %>"/><br/>
+  <input type='text' name='optional_image' value="<%= @review.optional_image %>"/><br/>
   <label for="review[user_id"><b>Select User:</b></label><br>
-  <%= select_tag 'review[user_id]', options_from_collection_for_select(@users, :id, :name), class: 'form-select'%>
+  <%= select_tag 'user_id', options_from_collection_for_select(@users, :id, :name), class: 'form-select'%>
   <%= submit_tag 'Submit Edit' %>
 </form>

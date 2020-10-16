@@ -1,8 +1,7 @@
 require 'rails_helper'
 
-
 describe 'As a visitor' do
-  describe 'When I visit /shelters/shelter_id' do
+  describe 'When I visit /shelters/shelter_id/reviews/id' do
     before :each do
       @shelter_1 = Shelter.create({
         name:    "The Feline Fix",
@@ -32,21 +31,12 @@ describe 'As a visitor' do
         user_id: "#{@user_1.id}",
         shelter_id: "#{@shelter_2.id}"})
     end
-    it "User can edit review" do
-      visit "/shelters/#{@shelter_2.id}"
-      click_on "Edit Review"
-      expect(current_path).to eq("/shelters/#{@shelter_2.id}/reviews/#{@review_1.id}/edit")
-
-      fill_in "title",      with: "Worst Place Ever"
-      fill_in "rating",   with: 3
-      fill_in "content",      with: "Don't Come Here"
-      select('Mike Dao', from: 'user_id')
-      click_button "Submit Edit"
-      expect(current_path).to eq("/shelters/#{@shelter_2.id}")
-      expect(page).to have_content("Worst Place Ever")
-      expect(page).to have_content(3)
-      expect(page).to have_content("Don't Come Here")
-      expect(page).to have_content("Mike Dao")
+      it 'I can not edit a review without a title/content or rating' do
+        visit "/shelters/#{@shelter_1.id}/reviews/#{@review_1.id}/edit"
+        fill_in "title",      with: ""
+        click_button "Submit Edit"
+        expect(page).to have_content("Review not updated: Required information missing")
+        expect(page).to have_button("Submit Edit")
+      end
     end
   end
-end

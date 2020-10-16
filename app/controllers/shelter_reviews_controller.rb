@@ -26,23 +26,17 @@ class ShelterReviewsController < ApplicationController
   end
 
   def update
-    shelter = Shelter.find(params[:shelter_id])
-    review = Review.find(params[:review_id])
-    # binding.pry
-    # shelter.update(shelter_params)
-    review.update({
-              title: params[:review][:title],
-              rating: params[:review][:rating],
-              content: params[:review][:content],
-              reviewer_name: params[:review][:reviewer_name],
-              optional_image: params[:review][:optional_image]
-              })
-
-
-
-    redirect_to "/shelters/#{shelter.id}"
-    
-  end
+    @users = User.all
+    @shelter = Shelter.find(params[:shelter_id])
+    @review = Review.find(params[:review_id])
+    @review.assign_attributes(review_params)
+    if @review.save
+      redirect_to "/shelters/#{@shelter.id}"
+    else
+      flash[:notice] = "Review not updated: Required information missing"
+      render :edit
+      end
+    end
 
   def destroy 
     shelter = Shelter.find(params[:shelter_id])
