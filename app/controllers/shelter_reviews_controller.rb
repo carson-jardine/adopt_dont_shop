@@ -5,9 +5,10 @@ class ShelterReviewsController < ApplicationController
           @users = User.all
   end
   def create
-            
+    @users = User.all
     @shelter = Shelter.find(params[:shelter_id])  
     @review = Review.new(review_params)
+   require 'pry'; binding.pry
     if @review.save
       redirect_to "/shelters/#{@shelter.id}"
     else 
@@ -49,6 +50,6 @@ class ShelterReviewsController < ApplicationController
 
   private 
   def review_params
-    params.permit(:title, :rating, :content, :reviewer_name, :optional_image)
+    params.permit(:title, :rating, :content, :user_id)
   end
 end
