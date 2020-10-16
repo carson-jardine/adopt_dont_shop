@@ -27,10 +27,10 @@ describe 'As a visitor' do
       click_button "Add Review"
       expect(current_path).to eq("/shelters/#{@shelter_1.id}/reviews/new")
          
-      fill_in "review[title]",      with: "Best Place Ever"
-      fill_in "review[rating]",   with: 5
-      fill_in "review[content]",      with: "This is the best place ever. Come adopt your pet here"
-      select('Mike Dao', from: 'review[user_id]')
+      fill_in "title",      with: "Best Place Ever"
+      fill_in "rating",   with: 5
+      fill_in "content",      with: "This is the best place ever. Come adopt your pet here"
+      select('Mike Dao', from: 'user_id')
       click_button "Submit Review"
       expect(current_path).to eq("/shelters/#{@shelter_1.id}")
      
