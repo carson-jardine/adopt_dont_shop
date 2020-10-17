@@ -50,8 +50,8 @@ describe 'As a visitor' do
       expect(page).to have_content("#{@user_1.zip}")
     end
 
-    it "shows all of the reviews with the review information" do 
-      
+    it "shows all of the reviews with the review information" do
+
       visit "/users/#{@user_1.id}"
 
       expect(page).to have_content("#{@review_1.title}")
@@ -65,7 +65,12 @@ describe 'As a visitor' do
       expect(page).to have_content("#{@review_2.content}")
       expect(page).to have_content("#{@review_2.reviewer_name}")
       expect(page).to have_xpath("//img[@src='#{@review_2.optional_image}']")
+    end
 
+    it "Shows the users average review rating" do
+      visit "/users/#{@user_1.id}"
+
+      expect(page).to have_content("#{@user_1.average_user_rating}")
     end
   end
 end
