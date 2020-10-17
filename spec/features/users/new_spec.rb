@@ -14,6 +14,7 @@ describe 'As a visitor' do
       click_button "Create User"
 
       user = User.last
+      
       expect(current_path).to eq("/users/#{user.id}")
 
       expect(page).to have_content("#{user.name}")

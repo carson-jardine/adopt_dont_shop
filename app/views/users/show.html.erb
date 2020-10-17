@@ -13,10 +13,21 @@
 <p><%= @user.zip %></p>
 
 <h1>User Reviews: </h1>
-<%= @user.reviews.each do |review|%>
-<%= review.title %>
-<%= review.rating %>
-<%= review.content %>
-<%= review.reviewer_name %>
-<%= image_tag review.optional_image if review.optional_image %>
+<% @user.reviews.each do |review| %>
+<h3><p>Title: <%= review.title %></br></p></h3>
+<p>Rating: <%= review.rating %></br></br></br></p>
+<p>Content: <%= review.content %></br></br></p>
+<p>Reviewed By: <%= review.user.name %></br></p>
+<%= image_tag review.optional_image if review.optional_image %></br>
 <% end %>
+
+<h1>Highlighted Reviews</h1>
+<% @user.highlighted_reviews.each do |highlighted_review| if @user.reviews.count > 0 %>
+<h3><p>Title: <%= highlighted_review.title %></br></p></h3>
+<p>Rating: <%= highlighted_review.rating %></br></p>
+<p>Content: <%= highlighted_review.content %></br></p>
+<p>Reviewed By: <%= highlighted_review.user.name %></br></p>
+<%= image_tag highlighted_review.optional_image if highlighted_review.optional_image %>
+<% end %>
+<% end %>
+
