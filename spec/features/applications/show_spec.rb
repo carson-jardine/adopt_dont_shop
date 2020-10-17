@@ -83,20 +83,6 @@ describe 'As a visitor' do
       expect(page).to have_link("#{@pet_2.name}")
 
       expect(page).to have_content("#{@application.application_status}")
-
     end
   end
 end
-
-  # User Story 15, Application Show Page
-  #
-  # PAIR STORY: It is recommended that you work on this story as a pair. Both partners should understand the data model for applications and how they relate to other models.
-  #
-  # As a visitor
-  # When I visit an applications show page "/applications/:id"
-  # Then I can see the following:
-  # - Name of the User on the Application
-  # - Full Address of the User on the Application
-  # - Description of why the applicant says they'd be a good home for this pet(s)
-  # - names of all pets that this application is for (all names of pets should be links to their show page)
-  # - The Application's status, either "In Progress", "Pending", "Accepted", or "Rejected"
