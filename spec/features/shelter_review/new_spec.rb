@@ -1,9 +1,5 @@
 require 'rails_helper'
 
-
-
-
-
 describe 'As a visitor' do
   describe 'When I visit /shelters/:id' do
     it "User can add a new review for the shelter" do
@@ -21,19 +17,19 @@ describe 'As a visitor' do
         city:     "Denver",
         state:    "CO",
         zip:      "80213")
-      
+
 
       visit "/shelters/#{@shelter_1.id}"
       click_button "Add Review"
       expect(current_path).to eq("/shelters/#{@shelter_1.id}/reviews/new")
-         
+
       fill_in "title",      with: "Best Place Ever"
       fill_in "rating",   with: 5
       fill_in "content",      with: "This is the best place ever. Come adopt your pet here"
       select('Mike Dao', from: 'user_id')
       click_button "Submit Review"
       expect(current_path).to eq("/shelters/#{@shelter_1.id}")
-     
+
       review=Review.last
       expect(page).to have_content("#{review.title}")
       expect(page).to have_content("#{review.rating}")
