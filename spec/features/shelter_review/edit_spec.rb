@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 describe 'As a visitor' do
   describe 'When I visit /shelters/shelter_id' do
     before :each do
@@ -32,6 +31,7 @@ describe 'As a visitor' do
         user_id: "#{@user_1.id}",
         shelter_id: "#{@shelter_2.id}"})
     end
+
     it "User can edit review" do
       visit "/shelters/#{@shelter_2.id}"
       click_on "Edit Review"

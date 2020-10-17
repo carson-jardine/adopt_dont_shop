@@ -17,3 +17,4 @@
     <a href="/pets/<%= pet.id %>/edit">Edit: <%= pet.name %></a>
     <%= link_to name= "Delete: #{pet.name}", "/pets/#{pet.id}", method: 'delete' %>
 <% end %>
+<%= link_to name= "Start an Application", "/applications/new", method: 'delete' %>

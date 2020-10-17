@@ -6,6 +6,7 @@ describe User, type: :model do
   end
   describe 'relationships' do
     it { should have_many :reviews}
+    it { should have_many :applications}
   end
 
   describe 'instance methods' do
@@ -54,7 +55,7 @@ describe User, type: :model do
         reviewer_name: "#{@user_1.name}",
         user_id: "#{@user_1.id}",
         shelter_id: "#{@shelter_1.id}"})
-      end 
+      end
 
     it "#highlighted_reviews" do
      expect(@user_1.highlighted_reviews).to eq([@review_2, @review_1])
