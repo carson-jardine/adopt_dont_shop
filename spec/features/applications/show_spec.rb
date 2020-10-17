@@ -60,7 +60,7 @@ describe 'As a visitor' do
       shelter_id: "#{@shelter_1.id}")
 
     @application = Application.create!({
-      # user_id: "#{@user_1.id}",
+      user_id: "#{@user_1.id}",
       name: "#{@user_1.name}",
       description: "I love animals and I want one",
       application_status: "Pending"
@@ -70,7 +70,7 @@ describe 'As a visitor' do
     PetApplication.create!(application: @application, pet: @pet_2)
     end
     it "The visitor can see the application details" do
-      visit 'applications/id'
+      visit "/applications/#{@application.id}"
 
       expect(page).to have_content("#{@user_1.name}")
       expect(page).to have_content("#{@user_1.address}")
@@ -82,7 +82,7 @@ describe 'As a visitor' do
       expect(page).to have_link("#{@pet_1.name}")
       expect(page).to have_link("#{@pet_2.name}")
 
-      expect(page).to have_content("#{@application.status}")
+      expect(page).to have_content("#{@application.application_status}")
 
     end
   end
