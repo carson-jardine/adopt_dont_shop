@@ -30,7 +30,7 @@ describe 'As a visitor' do
       click_button "Submit Review"
       expect(current_path).to eq("/shelters/#{@shelter_1.id}")
 
-      review=Review.last
+      review = Review.last
       expect(page).to have_content("#{review.title}")
       expect(page).to have_content("#{review.rating}")
       expect(page).to have_content("#{review.content}")

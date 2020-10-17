@@ -23,22 +23,31 @@ describe 'As a visitor' do
         state:    "CO",
         zip:      "80213")
     @review_1 = Review.create!({
-        title: "Best Place Ever",
-        rating: 5,
-        content: "The vets were nice af",
-        optional_image: "https://sayingimages.com/wp-content/uploads/You-Got-It-meme.jpg",
-        reviewer_name: "#{@user_1.name}",
-        user_id: "#{@user_1.id}",
-        shelter_id: "#{@shelter_2.id}"})
+      title: "Best Place Ever",
+      rating: 5,
+      content: "The vets were nice af",
+      optional_image: "https://sayingimages.com/wp-content/uploads/You-Got-It-meme.jpg",
+      reviewer_name: "#{@user_1.name}",
+      user_id: "#{@user_1.id}",
+      shelter_id: "#{@shelter_2.id}"})
     @review_2 = Review.create!({
-        title: "Worst Place Ever",
-        rating: 1,
-        content: "The vets were stupid af af",
-        optional_image: "https://sayingimages.com/wp-content/uploads/You-Got-It-meme.jpg",
-        reviewer_name: "#{@user_1.name}",
-        user_id: "#{@user_1.id}",
-        shelter_id: "#{@shelter_1.id}"})
+      title: "Worst Place Ever",
+      rating: 1,
+      content: "The vets were stupid af af",
+      optional_image: "https://sayingimages.com/wp-content/uploads/You-Got-It-meme.jpg",
+      reviewer_name: "#{@user_1.name}",
+      user_id: "#{@user_1.id}",
+      shelter_id: "#{@shelter_1.id}"})
+    @review_3 = Review.create!({
+      title: "Medicore Place Ever",
+      rating: 2,
+      content: "The vets were stupid af af",
+      optional_image: "https://sayingimages.com/wp-content/uploads/You-Got-It-meme.jpg",
+      reviewer_name: "#{@user_1.name}",
+      user_id: "#{@user_1.id}",
+      shelter_id: "#{@shelter_1.id}"})
     end
+
     it "shows all of the user's information" do
 
       visit "/users/#{@user_1.id}"
@@ -67,10 +76,22 @@ describe 'As a visitor' do
       expect(page).to have_xpath("//img[@src='#{@review_2.optional_image}']")
     end
 
-    it "Shows the users average review rating" do
+    it "Shows the user's average review rating" do
       visit "/users/#{@user_1.id}"
 
       expect(page).to have_content("#{@user_1.average_user_rating}")
+    end
+
+    it "Shows the user's highlighted_reviews" do
+      visit "/users/#{@user_1.id}"
+
+      within "#highlighted-review-#{@user_1.id}" do
+        expect(page).to have_content("#{@review_1.title}")
+        expect(page).to have_content("#{@review_2.title}")
+
+        expect(page).to_not have_content("#{@review_3.title}")
+      end
+
     end
   end
 end
