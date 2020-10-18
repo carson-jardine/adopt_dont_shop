@@ -62,7 +62,6 @@ describe 'As a visitor' do
     @application = Application.create!({
       user_id: "#{@user_1.id}",
       name: "#{@user_1.name}",
-      description: "I love animals and I want one",
       application_status: 'In Progress'
       })
 
@@ -129,6 +128,7 @@ describe 'As a visitor' do
       expect(page).to_not have_content('Submit This Application')
     end
 
+
     it "A search will still match when input is partial match" do
       visit "/applications/#{@application.id}"
       fill_in 'search', with: "Lou"
@@ -136,5 +136,15 @@ describe 'As a visitor' do
 
       expect(page).to have_content("Louis")
     end
+
+    it "show flash message if no description" do 
+      visit "/applications/#{@application.id}"
+      fill_in 'search', with: "#{@pet_1.name}"
+      click_button 'Submit'
+      click_button "Adopt this Pet"
+      expect(page).to have_content('Submit My Application')
+      click_button 'Submit This Application'
+      expect(page).to have_content('Fill Out Description')
+    end 
   end
 end
