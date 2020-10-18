@@ -15,11 +15,15 @@ class Pet < ApplicationRecord
       else
         "No pets match your search"
     end
-    if !pet_name.nil?
-      adoptable = pet_name.find do |pet|
-        pet.name
-      end
-      adoptable.name
-    end 
+    
+   if !pet_name.nil?
+    adoptable = pet_id
+    end
+    adoptable
+   end
   end
-end
+
+
+ 
+
+

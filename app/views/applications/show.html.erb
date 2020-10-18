@@ -1,32 +1,35 @@
 <h3>Applicant Name: <%= @application.user.name %></h3>
-<p>Address: </p>
-<ul>
-  <li><%= @application.user.address %></li>
-  <li><%= @application.user.city %></li>
-  <li><%= @application.user.state %></li>
-  <li><%= @application.user.zip %></li>
-</ul>
 
-<p>Description: <%= @application.description %></p>
 
-<h1>Pets of Interest:</h1>
+  <b><p>Address:</b> <%= @application.user.address %> <%= @application.user.city %> <%= @application.user.state %> <%= @application.user.zip %> </p>
+
+
+  <b><p>Description:</b> <%= @application.description %></p>
+
+<h4>Pets of Interest:</h4>
 <% @application.pets.each do |pet| %>
   <section id= 'pet-of-interest-<%= pet.id %>'>
     <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
   </section>
 <% end %>
 
-<p>Application Status: <%= @application.application_status %></p>
+<B><p>Application Status:</B> <%= @application.application_status %></p>
 
 <% if @application.application_status == "In Progress"%>
-  <p>Add a Pet to this Application</p>
+  <h4><p>Add a Pet to this Application</p><h4>
   <%= form_tag "/applications/#{@application.id}", method: :get do %>
     <%= label_tag(:search, "search") %>
     <%= search_field_tag(:search, params[:search]) %>
     <%= submit_tag ("Submit") %>
   <%end%>
-  <%= @adoption_pets %>
+  
   <% if !@adoption_pets.nil? %>
-    <%= button_to "Adopt this Pet", "/applications/#{@application.id}", method: :patch%>
+    <%= @adoption_pets.name %>
+  <form action=<%="/applications/#{@application.id}"%> method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="PATCH" />
+  <input type='hidden' name='pet_id' value="<%= @adoption_pets.id%> "/>
+  <input type='submit' value='Adopt this Pet' name='Adopt this Pet'/>
   <% end %>
   <% end %>
+

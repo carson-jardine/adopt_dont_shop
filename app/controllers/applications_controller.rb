@@ -17,15 +17,4 @@ class ApplicationsController < ApplicationController
       })
     redirect_to "/applications/#{@application.id}"
   end
-
-  def update
-    ## LEFT OFF ON US19 NEED IT SO PET NAME SHOWS UP UNDER PETS OF INTEREST
-
-    @application = Application.find(params[:id])
-    if params[:pet]
-      pet = Pet.find(params[:pet])
-      @application.pets << pet
-    end
-    redirect_to "/applications/#{@application.id}"
-  end
 end
