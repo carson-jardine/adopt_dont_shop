@@ -5,15 +5,16 @@ class Pet < ApplicationRecord
   has_many :applications, through: :pet_applications
 
   def self.search(search)
-    if search 
+    if search
       pet_id = Pet.find_by(name: search)
-        if pet_id 
-          self.where(id: pet_id)
+        if pet_id
+          pet_name = self.where(id: pet_id)
         else
           "No pets match your search"
         end
-      else 
+      else
         "No pets match your search"
     end
+    pet_name
   end
 end
