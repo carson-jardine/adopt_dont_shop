@@ -87,12 +87,36 @@ describe 'As a visitor' do
     it "Can search for a pet" do
       visit "/applications/#{@application.id}"
 
-    expect(page).to have_content("Add a Pet to this Application")
-    fill_in "search", with: "#{@pet_1.name}"
-    click_button "Submit"
-    expect(current_path).to eq("/applications/#{@application.id}")
-    
-    expect(page).to have_content("#{@pet_1.name}")
+      expect(page).to have_content("Add a Pet to this Application")
+      fill_in "search", with: "#{@pet_1.name}"
+      click_button "Submit"
+      expect(current_path).to eq("/applications/#{@application.id}")
+
+      expect(page).to have_content("#{@pet_1.name}")
+    end
+
+    it "Shows adopt pet button" do
+
+      visit "/applications/#{@application.id}"
+
+      fill_in "search", with: "#{@pet_1.name}"
+      click_button "Submit"
+
+      expect(page).to have_button("Adopt this Pet")
+      click_button "Adopt this Pet"
+
+      expect(current_path).to eq("/applications/#{@application.id}")
+      within "#pet-of-interest-#{@pet_1.id}" do
+        expect(page).to have_content("#{@pet_1.name}")
+      end
     end
   end
 end
+# As a visitor
+# When I visit an application's show page
+# And I search for a Pet by name
+# And I see the names Pets that matches my search
+# Then next to each Pet's name I see a button to "Adopt this Pet"
+# When I click one of these buttons
+# Then I am taken back to the application show page
+# And I see the Pet I want to adopt listed on this application
