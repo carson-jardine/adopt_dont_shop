@@ -26,7 +26,7 @@ describe 'As a visitor' do
       fill_in "title", with: "Best Place Ever"
       fill_in "rating", with: 5
       fill_in "content", with: "This is the best place ever. Come adopt your pet here"
-      select('Mike Dao', from: 'user_id')
+      select("#{@user_1.name}", from: 'user_id', match: :first)
       click_button "Submit Review"
       expect(current_path).to eq("/shelters/#{@shelter_1.id}")
 

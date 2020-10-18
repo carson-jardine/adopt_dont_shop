@@ -36,8 +36,8 @@ describe 'As a visitor' do
       expect(page).to have_link("Edit: #{@shelter_1.name}")
       expect(page).to have_link("Edit: #{@shelter_2.name}")
 
-      click_link("Edit: #{@shelter_1.name}")
-      expect(current_path).to eq("/shelters/#{@shelter_1.id}/edit")
+      click_link("Edit: #{@shelter_2.name}", match: :first)
+      expect(current_path).to eq("/shelters/#{@shelter_2.id}/edit")
     end
 
     it "The visitor sees a delete link next to each shelter" do
