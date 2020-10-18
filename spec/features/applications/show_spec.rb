@@ -121,12 +121,22 @@ describe 'As a visitor' do
       expect(page).to have_content("#{@pet_1.name}")
       expect(page).to_not have_content('Add a Pet to this Application')
     end
-    it "If user has not added pets to their application, they do not see a section to submit their application" do 
+    it "If user has not added pets to their application, they do not see a section to submit their application" do
       visit "/applications/#{@application.id}"
       fill_in 'search', with: "#{@pet_1.name}"
       click_button 'Submit'
       expect(page).to_not have_content('Submit This Application')
     end
+
+
+    it "A search will still match when input is partial match" do
+      visit "/applications/#{@application.id}"
+      fill_in 'search', with: "Lou"
+      click_button 'Submit'
+
+      expect(page).to have_content("Louis")
+    end
+
     it "show flash message if no description" do 
       visit "/applications/#{@application.id}"
       fill_in 'search', with: "#{@pet_1.name}"
@@ -138,11 +148,3 @@ describe 'As a visitor' do
     end 
   end
 end
-# As a visitor
-# When I visit an application's show page
-# And I search for a Pet by name
-# And I see the names Pets that matches my search
-# Then next to each Pet's name I see a button to "Adopt this Pet"
-# When I click one of these buttons
-# Then I am taken back to the application show page
-# And I see the Pet I want to adopt listed on this application

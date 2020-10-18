@@ -6,24 +6,9 @@ class Pet < ApplicationRecord
 
   def self.search(search)
     if search
-      pet_id = Pet.find_by(name: search)
-        if pet_id
-          pet_name = self.where(id: pet_id)
-        else
-          "No pets match your search"
-        end
-      else
-        "No pets match your search"
+      self.where(["name ilike ?", "%#{search}%"])
+    else
+      "No pets match your search"
     end
-    
-   if !pet_name.nil?
-    adoptable = pet_id
-    end
-    adoptable
-   end
   end
-
-
- 
-
-
+end

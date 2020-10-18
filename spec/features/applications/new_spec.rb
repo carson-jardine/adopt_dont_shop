@@ -31,7 +31,7 @@ describe 'As a visitor' do
         shelter_id: "#{@shelter_1.id}")
 
       visit "/applications/new"
-      select('Mike Dao', from: 'user_id')
+      select('Mike Dao', from: 'user_id', match: :first)
 
       click_button "Submit Application"
 
