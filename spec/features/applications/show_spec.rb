@@ -122,6 +122,12 @@ describe 'As a visitor' do
       expect(page).to have_content("#{@pet_1.name}")
       expect(page).to_not have_content('Add a Pet to this Application')
     end
+    it "If user has not added pets to their application, they do not see a section to submit their application" do 
+      visit "/applications/#{@application.id}"
+      fill_in 'search', with: "#{@pet_1.name}"
+      click_button 'Submit'
+      expect(page).to_not have_content('Submit This Application')
+    end
   end
 end
 # As a visitor
