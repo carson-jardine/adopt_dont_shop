@@ -21,13 +21,17 @@ class ApplicationsController < ApplicationController
   def update
 
     application = Application.find(params[:id])
-    application.update({
+    application.assign_attributes({
       description: params[:Description],
       application_status: 'Pending'
       })
 
-    application.save
-
-    redirect_to "/applications/#{application.id}"
+    if application.save
+      redirect_to "/applications/#{application.id}"
+    else
+     
+      flash[:notice] = "Fill Out Description"
+      redirect_to "/applications/#{application.id}"
+    end
   end
 end
