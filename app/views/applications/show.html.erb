@@ -13,13 +13,6 @@
   </section>
 <% end %>
 
-<% if !@application.pets.nil? %>
-<h4>Submit My Application</h4>
-<%= form_tag "/applications/#{@application.id}" do %>
-  <%= label_tag 'Why Would You Make A Good Owner?' %>
-  <%= text_field_tag 'Description' %><br/>
-  <%= submit_tag 'Submit This Application' %>
-<% end %>
 
 <B><p>Application Status:</B> <%= @application.application_status %></p>
 
@@ -40,5 +33,13 @@
   <input type='hidden' name='pet_id' value="<%= @adoption_pets.id%> "/>
   <input type='submit' value='Adopt this Pet' name='Adopt this Pet'/>
   <% end %>
-  <% end %>
+
+  <% if @application.pets != [] %>
+<h4>Submit My Application</h4>
+<%= form_tag "/applications/#{@application.id}" do %>
+  <%= label_tag 'Why Would You Make A Good Owner?' %>
+  <%= text_field_tag 'Description' %><br/>
+  <%= submit_tag 'Submit This Application' %>
+<% end %>
+<% end %>
 
