@@ -18,12 +18,8 @@
   <p>Add a Pet to this Application</p>
   <%= form_tag "/applications/#{@application.id}", method: :get do %>%
     <%= label_tag(:search, "search") %>
-    <%= text_field_tag(:search, params[:search]) %>
+    <%= search_field_tag(:search, params[:search]) %>
     <%= submit_tag ("Submit") %>
   <%end%>
+  <%= @adoption_pets %>
 <%end%>
-
-<% adoptable = @adoption_pets.find do |pet| %>
-  <% pet.name %>
-<% end %>
-<%= adoptable.name  %>
