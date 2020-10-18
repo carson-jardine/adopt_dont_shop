@@ -63,7 +63,7 @@ describe 'As a visitor' do
       user_id: "#{@user_1.id}",
       name: "#{@user_1.name}",
       description: "I love animals and I want one",
-      application_status: "Pending"
+      application_status: 'In Progress'
       })
 
     PetApplication.create!(application: @application, pet: @pet_1)
@@ -88,7 +88,7 @@ describe 'As a visitor' do
       visit "/applications/#{@application.id}"
 
     expect(page).to have_content("Add a Pet to this Application")
-    fill_in "Search for Pets by name", with: "#{@pet_1.name}"
+    fill_in "search", with: "#{@pet_1.name}"
     click_button "Submit"
     expect(current_path).to eq("/applications/#{@application.id}")
     

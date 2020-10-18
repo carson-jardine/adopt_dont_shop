@@ -27,5 +27,12 @@ class ApplicationsController < ApplicationController
 
   def show
     @application = Application.find(params[:id])
+    @adoption_pets = Pet.search(params[:search])
   end
+end
+
+private
+
+def fish_params
+  params.permit(:name, :pet_id, :search)
 end
