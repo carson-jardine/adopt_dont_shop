@@ -47,6 +47,6 @@ class ShelterReviewsController < ApplicationController
   private
 
   def review_params
-    params.permit(:title, :review, :rating, :content, :user_id, :shelter_id, :optional_image, :reviewer_name)
+    params.permit(:title, :review, :rating, :content, :user_id, :shelter_id, :optional_image, :reviewer_name )
   end
 end

@@ -61,15 +61,14 @@ describe 'As a visitor' do
 
       expect(page).to_not have_content("Meet #{@pet_3.name}!")
     end
-    ## ACCIDENTALLY STARTED US16
-    # it "The visitor sees a link to start an application" do
-    #   visit "/pets"
-    #
-    #   expect(page).to have_link("Start an Application")
-    #
-    #   click_link("Start an Application")
-    #   expect(current_path).to eq("/applications/new")
-    # end
 
+    it "The visitor sees a link to start an application" do
+      visit "/pets"
+
+      expect(page).to have_link("Start an Application")
+
+      click_link("Start an Application")
+      expect(current_path).to eq("/applications/new")
+    end
   end
 end

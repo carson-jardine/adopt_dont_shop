@@ -1,0 +1,42 @@
+require 'rails_helper'
+
+describe 'As a visitor' do
+  describe 'When I visit /applications/new' do
+    it "The visitor can fill out an application form" do
+      @shelter_1 = Shelter.create!({
+          name:    "The Feline Fix",
+          address:  "6075 Parkway Drive",
+          city:     "Denver",
+          state:    "CO",
+          zip:      "80022"})
+
+      @user_1 = User.create!(
+        name:     "Mike Dao",
+        address:  "123 Taylor Swift Ave",
+        city:     "Denver",
+        state:    "CO",
+        zip:      "80213")
+
+      @pet_1 = Pet.create!(
+        image: "http://cdn.akc.org/content/hero/cute_puppies_hero.jpg",
+        name:  "Louis",
+        approximate_age: 2,
+        sex: "Male",
+        shelter_id: "#{@shelter_1.id}")
+      @pet_2 = Pet.create!(
+        image: "http://cdn.akc.org/content/article-body-image/wirehaired_pointing_griffon_cute_puppies.jpg",
+        name:  "Charlie",
+        approximate_age: 5,
+        sex: "Male",
+        shelter_id: "#{@shelter_1.id}")
+
+      visit "/applications/new"
+      select('Mike Dao', from: 'user_id')
+
+      click_button "Submit Application"
+
+      application = Application.last
+      expect(current_path).to eq("/applications/#{application.id}")
+    end
+  end
+end
