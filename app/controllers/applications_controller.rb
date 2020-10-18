@@ -5,12 +5,12 @@ class ApplicationsController < ApplicationController
   end
 
   def create
+   
     @application = Application.create({
       name: params[:user_id],
-      user_id: params[:id],
+      user_id: params[:user_id],
       application_status: "In Progress"
       })
-
     redirect_to "/applications/#{@application.id}"
     # application.save
     # @users = User.all

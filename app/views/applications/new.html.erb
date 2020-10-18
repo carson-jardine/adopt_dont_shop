@@ -1,5 +1,5 @@
 
-<%= form_tag "/applications/#{@application.id}" do %>
+<%= form_tag "/applications" do %>
  <%= select_tag 'user_id', options_from_collection_for_select(@users, :id, :name), class: 'form-select'%>
  <%= submit_tag 'Submit Application' %>
 <% end %>
