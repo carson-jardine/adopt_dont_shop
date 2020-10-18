@@ -84,5 +84,15 @@ describe 'As a visitor' do
 
       expect(page).to have_content("#{@application.application_status}")
     end
+    it "Can search for a pet" do
+      visit "/applications/#{@application.id}"
+
+    expect(page).to have_content("Add a Pet to this Application")
+    fill_in "Search for Pets by name", with: "#{@pet_1.name}"
+    click_button "Submit"
+    expect(current_path).to eq("/applications/#{@application.id}")
+    
+    expect(page).to have_content("#{@pet_1.name}")
+    end
   end
 end
