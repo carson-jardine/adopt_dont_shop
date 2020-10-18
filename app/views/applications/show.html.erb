@@ -13,6 +13,14 @@
   </section>
 <% end %>
 
+<% if !@application.pets.nil? %>
+<h4>Submit My Application</h4>
+<%= form_tag "/applications/#{@application.id}" do %>
+  <%= label_tag 'Why Would You Make A Good Owner?' %>
+  <%= text_field_tag 'Description' %><br/>
+  <%= submit_tag 'Submit This Application' %>
+<% end %>
+
 <B><p>Application Status:</B> <%= @application.application_status %></p>
 
 <% if @application.application_status == "In Progress"%>
@@ -21,6 +29,7 @@
     <%= label_tag(:search, "search") %>
     <%= search_field_tag(:search, params[:search]) %>
     <%= submit_tag ("Submit") %>
+  <%end%>
   <%end%>
   
   <% if !@adoption_pets.nil? %>

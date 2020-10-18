@@ -66,8 +66,6 @@ describe 'As a visitor' do
       application_status: 'In Progress'
       })
 
-    #PetApplication.create!(application: @application, pet: @pet_1)
-    #PetApplication.create!(application: @application, pet: @pet_2)
     end
     it "The visitor can see the application details" do
       visit "/applications/#{@application.id}"
@@ -104,14 +102,28 @@ describe 'As a visitor' do
       click_button "Adopt this Pet"
 
       expect(current_path).to eq("/applications/#{@application.id}")
-      save_and_open_page
+
       within "#pet-of-interest-#{@pet_1.id}" do
         expect(page).to have_content("#{@pet_1.name}")
         expect(page).to have_link("#{@pet_1.name}")
       end
-      end
+    end
+    it 'User can submit application once they have added pets' do
+
+      visit "/applications/#{@application.id}"
+      fill_in 'search', with: "#{@pet_1.name}"
+      click_button 'Submit'
+      click_button "Adopt this Pet"
+      expect(page).to have_content('Submit My Application')
+      fill_in 'Description', with: 'I will take care of her'
+      click_button 'Submit This Application'
+      expect(current_path).to eq("/applications/#{@application.id}")
+      expect(page).to have_content('Pending')
+      expect(page).to have_content("#{@pet_1.name}")
+      expect(page).to_not have_content('Add a Pet to this Application')
     end
   end
+end
 # As a visitor
 # When I visit an application's show page
 # And I search for a Pet by name
