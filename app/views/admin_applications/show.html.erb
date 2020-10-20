@@ -1,9 +1,3 @@
-<div class="topnav">
-  <%= link_to "Home", '/' %>
-  <%= link_to "View All Pets", '/pets' %>
-  <%= link_to "View All Shelters", '/shelters' %>
-</div>
-
 <% @application.pet_applications.each do |pet| %>
 <% if pet.pet_status != nil %>
 <%= pet.pet.name %>
@@ -21,5 +15,3 @@
     <% end %>
   </section>
 <% end %>
-
-

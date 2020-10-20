@@ -1,9 +1,4 @@
 <h1>All Pets!</h1>
-<div class="topnav">
-  <a class="active" href="/">Home</a>
-  <a href="/pets">View All Pets</a>
-  <a href="/shelters">View All Shelters</a>
-</div>
 
 <% @pets.each do |pet| %>
   <h2><a href="/pets/<%= pet.id %>">Meet <%= pet.name %>!</a></h2>

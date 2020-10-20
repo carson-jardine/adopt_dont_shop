@@ -1,12 +1,6 @@
-<div class="topnav">
-  <%= link_to "Home", '/' %>
-  <%= link_to "View All Pets", '/pets' %>
-  <%= link_to "View All Shelters", '/shelters' %>
-</div>
-
 
 <h1><%= @shelter.name %></h1>
-<div class="h3">
+<div class="shelter-info">
   <h3>Address:</h3>
   <p><%= @shelter.address %></p>
   <p><%= @shelter.city %>, <%= @shelter.state %></p>

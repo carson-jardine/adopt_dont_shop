@@ -1,13 +1,8 @@
-<div class="h1">
-  <h1>All Shelters</h1>
-</div>
 
-<div class="topnav">
-  <%= link_to "Home", '/' %>
-  <%= link_to "View All Pets", '/pets' %>
-  <%= link_to "View All Shelters", '/shelters' %>
-  <%= link_to "Add New Shelter", '/shelters/new' %>
-</div>
+<h1 class="all-shelters">All Shelters</h1>
+
+
+<%= link_to "Add New Shelter", '/shelters/new' %>
 
 <% @shelters.each do |shelter| %>
   <h2> <%= link_to "View: #{shelter.name}", "/shelters/#{shelter.id}"%></h2>

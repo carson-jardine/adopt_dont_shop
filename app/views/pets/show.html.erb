@@ -1,10 +1,6 @@
+<a href="/shelters/<%= @pet.shelter.id %>">Return to <%= @pet.shelter.name %></a>
+
 <h1>Hello! I am <%= @pet.name %>!</h1>
-<div class="topnav">
-  <a class="active" href="/">Home</a>
-  <a href="/pets">View All Pets</a>
-  <a href="/shelters">View All Shelters</a>
-  <a href="/shelters/<%= @pet.shelter.id %>">Return to <%= @pet.shelter.name %></a>
-</div>
 
 <img src= <%= @pet.image %> />
 <p>About Me: <%= @pet.description %></p>

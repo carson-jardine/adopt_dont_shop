@@ -1,9 +1,3 @@
-<div class="topnav">
-  <a class="active" href="/">Home</a>
-  <a href="/pets">View All Pets</a>
-  <a href="/shelters">View All Shelters</a>
-</div>
-
 <form action="/pets/<%= @pet.id %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="_method" value="PATCH" />

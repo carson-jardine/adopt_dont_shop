@@ -1,8 +1,3 @@
-<div class="topnav">
-  <%= link_to "Home", '/' %>
-  <%= link_to "View All Pets", '/pets' %>
-  <%= link_to "View All Shelters", '/shelters' %>
-</div>
 
 <form action="/shelters/<%= @shelter.id %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
