@@ -43,7 +43,8 @@ describe 'As a visitor' do
     @application_1 = Application.create!({
       user_id: "#{@user_1.id}",
       name: "#{@user_1.name}",
-      application_status: 'Pending'
+      application_status: 'Pending',
+      description: 'testtest'
       })
     @application_2 = Application.create!({
       user_id: "#{@user_2.id}",
@@ -56,6 +57,7 @@ describe 'As a visitor' do
     end
 
     it "Visitor can click approval button" do
+
       visit "/admin/applications/#{@application_1.id}"
       within ("#pet-#{@pet_1.id}") do
         click_on "Approve"
