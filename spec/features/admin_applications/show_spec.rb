@@ -61,7 +61,8 @@ describe 'As a visitor' do
     @application = Application.create!({
       user_id: "#{@user_1.id}",
       name: "#{@user_1.name}",
-      application_status: 'Pending'
+      application_status: 'Pending',
+      description: 'testtest'
       })
 
       PetApplication.create!({pet_id: @pet_1.id, application_id: @application.id})
@@ -70,8 +71,8 @@ describe 'As a visitor' do
     it "Visitor can click approval button" do
       visit "/admin/applications/#{@application.id}"
       click_on "Approve"
-      save_and_open_page
       expect(current_path).to eq("/admin/applications/#{@application.id}")
+      save_and_open_page
       expect(page).to have_content("Approved")
     end
   end
