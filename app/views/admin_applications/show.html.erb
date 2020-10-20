@@ -1,5 +1,5 @@
 
-<%PetApplication.all.each do |pet_application_instance| %>
+<%@application.pet_applications.each do |pet_application_instance| %>
 <% if pet_application_instance.pet_status != nil %> 
 <%= pet_application_instance.pet.name %> 
 <%= pet_application_instance.pet_status %> 
@@ -7,7 +7,7 @@
 <% end %>
 
 
-<% PetApplication.all.each do |pet_application_instance| %>
+<% @application.pet_applications.each do |pet_application_instance| %>
 <% if pet_application_instance.pet_status == nil %> 
 <%= pet_application_instance.pet.name %> 
   <form action=<%="/admin/applications/#{@application.id}"%> method="post">

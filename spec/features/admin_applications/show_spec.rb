@@ -70,8 +70,8 @@ describe 'As a visitor' do
     it "Visitor can click approval button" do
       visit "/admin/applications/#{@application.id}"
       click_on "Approve"
-      expect(current_path).to eq("/admin/applications/#{@application.id}")
       save_and_open_page
+      expect(current_path).to eq("/admin/applications/#{@application.id}")
       expect(page).to have_content("Approved")
     end
   end
