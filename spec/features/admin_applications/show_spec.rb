@@ -97,8 +97,7 @@ describe 'As a visitor' do
     it "Visitor does not see approve or reject button when pet has been approved on another application" do
 
       visit "/admin/applications/#{@application_2.id}"
-save_and_open_page
-    
+
       expect(page).to have_content("#{@pet_1.name} has already been approved for adoption")
     end
   end
