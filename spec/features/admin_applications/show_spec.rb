@@ -21,30 +21,12 @@ describe 'As a visitor' do
         city:     "Denver",
         state:    "CO",
         zip:      "80213")
-    @review_1 = Review.create!({
-      title: "Best Place Ever",
-      rating: 5,
-      content: "The vets were nice af",
-      optional_image: "https://sayingimages.com/wp-content/uploads/You-Got-It-meme.jpg",
-      reviewer_name: "#{@user_1.name}",
-      user_id: "#{@user_1.id}",
-      shelter_id: "#{@shelter_2.id}"})
-    @review_2 = Review.create!({
-      title: "Worst Place Ever",
-      rating: 1,
-      content: "The vets were stupid af af",
-      optional_image: "https://sayingimages.com/wp-content/uploads/You-Got-It-meme.jpg",
-      reviewer_name: "#{@user_1.name}",
-      user_id: "#{@user_1.id}",
-      shelter_id: "#{@shelter_1.id}"})
-    @review_3 = Review.create!({
-      title: "Medicore Place Ever",
-      rating: 2,
-      content: "The vets were stupid af af",
-      optional_image: "https://sayingimages.com/wp-content/uploads/You-Got-It-meme.jpg",
-      reviewer_name: "#{@user_1.name}",
-      user_id: "#{@user_1.id}",
-      shelter_id: "#{@shelter_1.id}"})
+    @user_2 = User.create!(
+        name:     "Ace Ventura",
+        address:  "323 Banana Ave",
+        city:     "Denver",
+        state:    "CO",
+        zip:      "80213")
     @pet_1 = Pet.create!(
       image: "http://cdn.akc.org/content/hero/cute_puppies_hero.jpg",
       name:  "Louis",
@@ -58,24 +40,39 @@ describe 'As a visitor' do
       sex: "Male",
       shelter_id: "#{@shelter_1.id}")
 
-    @application = Application.create!({
+    @application_1 = Application.create!({
       user_id: "#{@user_1.id}",
       name: "#{@user_1.name}",
       application_status: 'Pending',
       description: 'testtest'
       })
+    @application_2 = Application.create!({
+      user_id: "#{@user_2.id}",
+      name: "#{@user_2.name}",
+      application_status: 'Pending'
+      })
 
-      PetApplication.create!({pet_id: @pet_1.id, application_id: @application.id})
-      PetApplication.create!({pet_id: @pet_2.id, application_id: @application.id})
+    PetApplication.create!({pet_id: @pet_1.id, application_id: @application_1.id})
+    PetApplication.create!({pet_id: @pet_2.id, application_id: @application_2.id})
 
     end
+
     it "Visitor can click approval button" do
-      visit "/admin/applications/#{@application.id}"
-      click_on "Reject #{@pet_1.name}"
-      click_on "Approve #{@pet_2.name}"
-      save_and_open_page
-      expect(current_path).to eq("/admin/applications/#{@application.id}")
+
+      visit "/admin/applications/#{@application_1.id}"
+      within ("#pet-#{@pet_1.id}") do
+        click_on "Approve"
+        expect(current_path).to eq("/admin/applications/#{@application_1.id}")
+      end
       expect(page).to have_content("Approved")
+    end
+    it "Visitor can click reject button" do
+      visit "/admin/applications/#{@application_2.id}"
+      within ("#pet-#{@pet_2.id}") do
+        click_on "Reject"
+        expect(current_path).to eq("/admin/applications/#{@application_2.id}")
+      end
+      expect(page).to have_content("Rejected")
     end
   end
 end
