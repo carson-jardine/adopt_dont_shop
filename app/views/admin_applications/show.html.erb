@@ -4,19 +4,25 @@
 <%= pet.pet_status %>
 <% end %>
 <% end %>
+
+
+
 <h4><%= @application.name %> <%= @application.application_status %>
 
-<% @approved_pet = @application.pet_applications.any? do |pet|  %>
-  <% pet.pet_status == "Approved" %>
-<% end %>
 <% @application.pet_applications.each do |pet| %>
   <section id="pet-<%= pet.pet.id %>">
-    <% if pet.pet_status == nil && @approved_pet == false %>
+    <% @pet_object = Pet.find_by id: pet.pet_id %>
+    <% @applications_for_each_pet =  @pet_object.applications %>
+    <% @the_answer = @applications_for_each_pet.map do |single_app|%>
+    <% single_app.application_status %>
+    <% end %>
+   
+    <% if @the_answer.flatten.include?("Approved") %>
+      <p><%= pet.pet.name %> has already been approved for adoption</p>
+    <% elsif pet.pet_status == nil && !@the_answer.include?("Approved") %>
     <%= pet.pet.name %>
     <%= button_to "Approve #{pet.pet.name}", "/admin/applications/#{@application.id}?pet_id=#{pet.pet_id}&pet_status=Approved", method: :patch %>
     <%= button_to "Reject #{pet.pet.name}", "/admin/applications/#{@application.id}?pet_id=#{pet.pet_id}&pet_status=Rejected", method: :patch  %>
-    <% elsif @approved_pet == true  %>
-      <p><%= pet.pet.name %> has already been approved for adoption</p>
     <% end %>
   </section>
 <% end %>

@@ -70,14 +70,15 @@ describe 'As a visitor' do
       application_status: 'Approved'
       })
 
-    PetApplication.create!({pet_id: @pet_1.id, application_id: @application_1.id})
+    PetApplication.create!({pet_id: @pet_1.id, application_id: @application_2.id})
     PetApplication.create!({pet_id: @pet_2.id, application_id: @application_2.id})
-
+    PetApplication.create!({pet_id: @pet_1.id, application_id: @application_3.id})
+    PetApplication.create!({pet_id: @pet_3.id, application_id: @application_1.id})
     end
 
     it "Visitor can click approval button" do
       visit "/admin/applications/#{@application_1.id}"
-      within ("#pet-#{@pet_1.id}") do
+      within ("#pet-#{@pet_3.id}") do
         click_on "Approve"
         expect(current_path).to eq("/admin/applications/#{@application_1.id}")
       end
@@ -95,17 +96,10 @@ describe 'As a visitor' do
 
     it "Visitor does not see approve or reject button when pet has been approved on another application" do
 
-      PetApplication.create!({pet_id: @pet_3.id, application_id: @application_3.id})
-      PetApplication.create!({pet_id: @pet_3.id, application_id: @application_2.id})
-
-      visit "/admin/applications/#{@application_3.id}"
-      click_on "Approve"
-
       visit "/admin/applications/#{@application_2.id}"
-      save_and_open_page
-      expect(page).to_not have_button('Approve')
-      expect(page).to_not have_button('Reject')
-      expect(page).to have_content("#{@pet_3.name} has already been approved for adoption")
+save_and_open_page
+    
+      expect(page).to have_content("#{@pet_1.name} has already been approved for adoption")
     end
   end
 end
