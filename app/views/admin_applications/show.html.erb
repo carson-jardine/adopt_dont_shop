@@ -1,0 +1,23 @@
+
+<%PetApplication.all.each do |pet_application_instance| %>
+<% if pet_application_instance.pet_status != nil %> 
+<%= pet_application_instance.pet.name %> 
+<%= pet_application_instance.pet_status %> 
+<% end %>
+<% end %>
+
+
+<% PetApplication.all.each do |pet_application_instance| %>
+<% if pet_application_instance.pet_status == nil %> 
+<%= pet_application_instance.pet.name %> 
+  <form action=<%="/admin/applications/#{@application.id}"%> method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="PATCH" />
+  <input type='hidden' name='pet_id' value="<%= pet_application_instance.pet.id%> "/>
+  <input type='submit' value="<%= "Approve" %> " name='Approve'/>
+<% end %>
+<% end %>
+
+
+
+
