@@ -54,6 +54,7 @@ describe 'As a visitor' do
 
     PetApplication.create!({pet_id: @pet_1.id, application_id: @application_1.id})
     PetApplication.create!({pet_id: @pet_2.id, application_id: @application_2.id})
+
     end
 
     it "Visitor can click approval button" do
