@@ -6,12 +6,17 @@
 <% end %>
 <h4><%= @application.name %> <%= @application.application_status %>
 
+<% @approved_pet = @application.pet_applications.any? do |pet|  %>
+  <% pet.pet_status == "Approved" %>
+<% end %>
 <% @application.pet_applications.each do |pet| %>
   <section id="pet-<%= pet.pet.id %>">
-    <% if pet.pet_status == nil %>
+    <% if pet.pet_status == nil && @approved_pet == false %>
     <%= pet.pet.name %>
     <%= button_to "Approve #{pet.pet.name}", "/admin/applications/#{@application.id}?pet_id=#{pet.pet_id}&pet_status=Approved", method: :patch %>
     <%= button_to "Reject #{pet.pet.name}", "/admin/applications/#{@application.id}?pet_id=#{pet.pet_id}&pet_status=Rejected", method: :patch  %>
+    <% elsif @approved_pet == true  %>
+      <p><%= pet.pet.name %> has already been approved for adoption</p>
     <% end %>
   </section>
 <% end %>

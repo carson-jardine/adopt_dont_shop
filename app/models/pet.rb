@@ -7,8 +7,6 @@ class Pet < ApplicationRecord
   def self.search(search)
     if search
       self.where(["name ilike ?", "%#{search}%"])
-    else
-      "No pets match your search"
-    end
+    end 
   end
 end
