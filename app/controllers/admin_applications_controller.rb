@@ -20,6 +20,9 @@ class AdminApplicationsController < ApplicationController
       if application_rejected == nil && application_no_status == nil
         @application.update(application_status: 'Approved')
         @application.save
+      elsif application_rejected != nil && application_no_status == nil
+        @application.update(application_status: 'Rejected')
+        @application.save
       end
     redirect_to "/admin/applications/#{params[:id]}"
   end

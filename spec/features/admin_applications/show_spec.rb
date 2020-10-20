@@ -66,13 +66,15 @@ describe 'As a visitor' do
       })
 
       PetApplication.create!({pet_id: @pet_1.id, application_id: @application.id})
+      PetApplication.create!({pet_id: @pet_2.id, application_id: @application.id})
 
     end
     it "Visitor can click approval button" do
       visit "/admin/applications/#{@application.id}"
-      click_on "Approve"
-      expect(current_path).to eq("/admin/applications/#{@application.id}")
+      click_on "Reject #{@pet_1.name}"
+      click_on "Approve #{@pet_2.name}"
       save_and_open_page
+      expect(current_path).to eq("/admin/applications/#{@application.id}")
       expect(page).to have_content("Approved")
     end
   end

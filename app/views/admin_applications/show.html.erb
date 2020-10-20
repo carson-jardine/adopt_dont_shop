@@ -16,8 +16,8 @@
   <section id="pet-<%= pet.pet.id %>">
     <% if pet.pet_status == nil %>
     <%= pet.pet.name %>
-    <%= button_to 'Approve', "/admin/applications/#{@application.id}?pet_id=#{pet.pet_id}&pet_status=Approved", method: :patch %>
-    <%= button_to 'Reject', "/admin/applications/#{@application.id}?pet_id=#{pet.pet_id}&pet_status=Rejected", method: :patch  %>
+    <%= button_to "Approve #{pet.pet.name}", "/admin/applications/#{@application.id}?pet_id=#{pet.pet_id}&pet_status=Approved", method: :patch %>
+    <%= button_to "Reject #{pet.pet.name}", "/admin/applications/#{@application.id}?pet_id=#{pet.pet_id}&pet_status=Rejected", method: :patch  %>
     <% end %>
   </section>
 <% end %>
