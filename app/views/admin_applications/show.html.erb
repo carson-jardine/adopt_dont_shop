@@ -1,23 +1,22 @@
+<div class="topnav">
+  <%= link_to "Home", '/' %>
+  <%= link_to "View All Pets", '/pets' %>
+  <%= link_to "View All Shelters", '/shelters' %>
+</div>
 
-<%@application.pet_applications.each do |pet_application_instance| %>
-<% if pet_application_instance.pet_status != nil %> 
-<%= pet_application_instance.pet.name %> 
-<%= pet_application_instance.pet_status %> 
+<% @application.pet_applications.each do |pet| %>
+<% if pet.pet_status != nil %>
+<%= pet.pet.name %>
+<%= pet.pet_status %>
 <% end %>
 <% end %>
 
-
-<% @application.pet_applications.each do |pet_application_instance| %>
-<% if pet_application_instance.pet_status == nil %> 
-<%= pet_application_instance.pet.name %> 
-  <form action=<%="/admin/applications/#{@application.id}"%> method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="PATCH" />
-  <input type='hidden' name='pet_id' value="<%= pet_application_instance.pet.id%> "/>
-  <input type='submit' value="<%= "Approve" %> " name='Approve'/>
+<% @application.pet_applications.each do |pet| %>
+  <section id="pet-<%= pet.pet.id %>">
+    <% if pet.pet_status == nil %>
+    <%= pet.pet.name %>
+    <%= button_to 'Approve', "/admin/applications/#{@application.id}?pet_id=#{pet.pet_id}&pet_status=Approved", method: :patch %>
+    <%= button_to 'Reject', "/admin/applications/#{@application.id}?pet_id=#{pet.pet_id}&pet_status=Rejected", method: :patch  %>
+    <% end %>
+  </section>
 <% end %>
-<% end %>
-
-
-
-
