@@ -43,6 +43,7 @@ describe 'As a visitor' do
       fill_in "reviewer_name", with: "#{@user_1.name}"
 
       click_button "Submit Edit"
+      
       expect(current_path).to eq("/shelters/#{@shelter_2.id}")
       expect(page).to have_content("Worst Place Ever")
       expect(page).to have_content(3)
