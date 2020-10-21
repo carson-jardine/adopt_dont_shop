@@ -30,16 +30,22 @@ class ShelterReviewsController < ApplicationController
   end
 
   def update
+  
     @users = User.all
     @shelter = Shelter.find(params[:shelter_id])
     @review = Review.find(params[:review_id])
-    @review.assign_attributes(review_params)
-    if @review.save
-      redirect_to "/shelters/#{@shelter.id}"
+    if User.name_exists?(params[:reviewer_name])
+      @review.assign_attributes(review_params)
     else
-      flash[:notice] = "Review not updated: Required information missing"
-      render :edit
+      flash[:notice] = "User does not exist. Please enter a valid user name"
+      redirect_to "/shelters/#{@shelter.id}/reviews/#{@review.id}/edit"
     end
+      if @review.save
+      redirect_to "/shelters/#{@shelter.id}"
+      else
+        flash[:notice] = "Review not updated: Required information missing"
+        redirect_to "/shelters/#{@shelter.id}/reviews/#{@review.id}/edit"
+      end
   end
 
   def destroy
@@ -51,6 +57,6 @@ class ShelterReviewsController < ApplicationController
   private
 
   def review_params
-    params.permit(:title, :review, :rating, :content, :user_id, :shelter_id, :optional_image, :reviewer_name )
+    params.permit(:title, :id, :rating, :content, :user_id, :shelter_id, :optional_image, :reviewer_name )
   end
 end
