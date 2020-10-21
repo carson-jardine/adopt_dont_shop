@@ -38,5 +38,11 @@ describe 'As a visitor' do
         expect(page).to have_content("Review not updated: Required information missing")
         expect(page).to have_button("Submit Edit")
       end
+      it 'I can not edit a review without a name that is in the database' do
+        visit "/shelters/#{@shelter_1.id}/reviews/#{@review_1.id}/edit"
+        fill_in "reviewer_name",      with: "Cheeze-Head"
+        click_button "Submit Edit"
+        expect(page).to have_content("User does not exist. Please enter a valid user name")
+      end
     end
   end
