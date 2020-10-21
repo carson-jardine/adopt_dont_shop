@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_20_000959) do
+ActiveRecord::Schema.define(version: 2020_10_21_192613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2020_10_20_000959) do
     t.string "description"
     t.string "application_status"
     t.bigint "user_id"
+    t.string "applicant_name"
     t.index ["user_id"], name: "index_applications_on_user_id"
   end
 

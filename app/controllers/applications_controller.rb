@@ -12,17 +12,18 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    @application = Application.create({
-      name: params[:user_id],
-      user_id: params[:user_id],
-      application_status: 'In Progress'
-      })
+    if User.name_exists?(params[:applicant_name])
+      @application = Application.new(application_params)
+      @application.user_id = User.find_by(name: params[:applicant_name]).id
+      @application.save
+      redirect_to "/applications/#{@application.id}"
 
-    redirect_to "/applications/#{@application.id}"
+    else
+      flash[:notice] = "User does not exist. Please enter a valid user name"
+    end
   end
 
   def update
-
     application = Application.find(params[:id])
     application.assign_attributes({
       description: params[:Description],
@@ -36,5 +37,11 @@ class ApplicationsController < ApplicationController
       flash[:notice] = "Fill Out Description"
       redirect_to "/applications/#{application.id}"
     end
+  end
+
+  private
+
+  def application_params
+    params.permit(:name, :applicant_name, :user_id, :application_status, :description)
   end
 end

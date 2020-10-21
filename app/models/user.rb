@@ -13,10 +13,8 @@ class User < ApplicationRecord
     reviews.average(:rating)
   end
 
-  def self.db_names
-    self.all.map do |user|
-      user.name
-    end
+  def self.name_exists?(param_name)
+    exists?(name: param_name)
   end
 
 end

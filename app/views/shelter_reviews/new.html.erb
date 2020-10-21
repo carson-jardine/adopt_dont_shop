@@ -11,7 +11,7 @@
   <%= text_field_tag 'reviewer_name' %><br/>
   <%= label_tag 'Optional Image' %>
   <%= text_field_tag 'optional_image' %><br/>
+  <%= hidden_field_tag :shelter, params[:shelter] %>
   <%= submit_tag 'Submit Review' %>
-  <input type='hidden' name="shelter_id" value="<%=@shelter.id%>"><br><br>
 
 <% end %>
