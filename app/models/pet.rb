@@ -13,4 +13,5 @@ class Pet < ApplicationRecord
   def approved?
     applications.exists?(application_status: "Approved")
   end
+
 end
