@@ -18,7 +18,7 @@
 
 <h1>Highlighted Reviews</h1>
 
-<% if @user.reviews.count > 1 %>
+<% if @user.reviews.count > 2 %>
 <section id= 'highlighted-review-<%= @user.id %>' class='highlighted-review'>
   <% @user.highlighted_reviews.each do |highlighted_review| if @user.reviews.count > 0 %>
     <h3><p>Title: <%= highlighted_review.title %></p></h3><br>
