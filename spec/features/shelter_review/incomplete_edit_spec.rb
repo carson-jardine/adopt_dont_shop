@@ -33,7 +33,7 @@ describe 'As a visitor' do
     end
       it 'I can not edit a review without a title/content or rating' do
         visit "/shelters/#{@shelter_1.id}/reviews/#{@review_1.id}/edit"
-
+        fill_in "title", with: ""
         fill_in "rating", with: 5
         fill_in "content", with: "This is the best place ever. Come adopt your pet here"
         fill_in "reviewer_name", with: "#{@user_1.name}"
