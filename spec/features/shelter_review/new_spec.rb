@@ -36,6 +36,7 @@ describe 'As a visitor' do
       expect(page).to have_content("#{review.content}")
       expect(page).to have_content("#{@user_1.name}")
     end
+
     it "User can add a new review for the shelter" do
       visit "/shelters/#{@shelter_1.id}"
       click_button "Add Review"
