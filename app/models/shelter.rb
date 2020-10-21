@@ -1,7 +1,7 @@
 class Shelter < ApplicationRecord
   validates_presence_of :name
   has_many :pets, dependent: :destroy
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   has_many :applications, through: :pets
 
   def average_shelter_rating
@@ -23,5 +23,4 @@ class Shelter < ApplicationRecord
   def has_approved?
     applications.exists?(application_status: "Approved")
   end
-
 end
