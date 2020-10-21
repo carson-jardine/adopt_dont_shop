@@ -5,7 +5,7 @@
   <p><%= @shelter.city %>, <%= @shelter.state %></p>
   <p><%= @shelter.zip %></p>
 
-  <h4>Total Pets: <%= @shelter.pets.count %></h4>
+  <h4>Total Pets: <%= @shelter.pet_count %></h4>
   <h4>Average Rating: <%= @shelter.average_shelter_rating %></h4>
   <h4>Number of Applications on File: <%= @shelter.total_applications %></h4>
 </div>
@@ -21,10 +21,15 @@
   <p>Reviewed By: <%= review.user.name %></p>
   <%= button_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit", method:'get' %><br>
   <%= button_to "Delete Review", "/shelters/#{@shelter.id}/reviews/#{review.id}", method:'delete', data: {confirm: "Please confirm you would like to delete #{review.reviewer_name}"} %>
-
 <% end %>
 
+<% if !@shelter.has_pending? %>
 <%= button_to "Add Review", "/shelters/#{@shelter.id}/reviews/new", method:'get' %><br>
 <%= button_to "View All Available Pets!", "/shelters/#{@shelter.id}/pets", method:'get' %><br>
 <%= button_to "Update Shelter", "/shelters/#{@shelter.id}/edit", method:'get' %><br>
 <%= button_to "Delete Shelter", "/shelters/#{@shelter.id}", method:'delete', data: {confirm: "Please confirm you would like to delete #{@shelter.name}"} %>
+<% else %>
+  <%= button_to "Add Review", "/shelters/#{@shelter.id}/reviews/new", method:'get' %><br>
+  <%= button_to "View All Available Pets!", "/shelters/#{@shelter.id}/pets", method:'get' %><br>
+  <%= button_to "Update Shelter", "/shelters/#{@shelter.id}/edit", method:'get' %><br>
+<% end %>
