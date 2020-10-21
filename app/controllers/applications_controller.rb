@@ -17,6 +17,7 @@ class ApplicationsController < ApplicationController
       user_id: params[:user_id],
       application_status: 'In Progress'
       })
+
     redirect_to "/applications/#{@application.id}"
   end
 
@@ -31,7 +32,7 @@ class ApplicationsController < ApplicationController
     if application.save
       redirect_to "/applications/#{application.id}"
     else
-     
+
       flash[:notice] = "Fill Out Description"
       redirect_to "/applications/#{application.id}"
     end

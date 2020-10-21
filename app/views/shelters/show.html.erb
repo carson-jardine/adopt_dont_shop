@@ -23,13 +23,14 @@
   <%= button_to "Delete Review", "/shelters/#{@shelter.id}/reviews/#{review.id}", method:'delete', data: {confirm: "Please confirm you would like to delete #{review.reviewer_name}"} %>
 <% end %>
 
-<% if !@shelter.has_pending? %>
-<%= button_to "Add Review", "/shelters/#{@shelter.id}/reviews/new", method:'get' %><br>
-<%= button_to "View All Available Pets!", "/shelters/#{@shelter.id}/pets", method:'get' %><br>
-<%= button_to "Update Shelter", "/shelters/#{@shelter.id}/edit", method:'get' %><br>
-<%= button_to "Delete Shelter", "/shelters/#{@shelter.id}", method:'delete', data: {confirm: "Please confirm you would like to delete #{@shelter.name}"} %>
+<% if @shelter.has_pending? || @shelter.has_approved? %>
+  <%= button_to "Add Review", "/shelters/#{@shelter.id}/reviews/new", method:'get' %><br>
+  <%= button_to "View All Available Pets!", "/shelters/#{@shelter.id}/pets", method:'get' %><br>
+  <%= button_to "Update Shelter", "/shelters/#{@shelter.id}/edit", method:'get' %><br>
+
 <% else %>
   <%= button_to "Add Review", "/shelters/#{@shelter.id}/reviews/new", method:'get' %><br>
   <%= button_to "View All Available Pets!", "/shelters/#{@shelter.id}/pets", method:'get' %><br>
   <%= button_to "Update Shelter", "/shelters/#{@shelter.id}/edit", method:'get' %><br>
+  <%= button_to "Delete Shelter", "/shelters/#{@shelter.id}", method:'delete', data: {confirm: "Please confirm you would like to delete #{@shelter.name}"} %>
 <% end %>

@@ -17,7 +17,11 @@ class Shelter < ApplicationRecord
   end
 
   def has_pending?
-    applications.exists?(application_status: "Pending")
+    pets.exists?(adoption_status: "Pending")
+  end
+
+  def has_approved?
+    applications.exists?(application_status: "Approved")
   end
 
 end
