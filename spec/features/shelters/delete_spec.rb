@@ -99,7 +99,7 @@ describe 'As a visitor' do
       expect(page).to_not have_button("Delete Shelter")
     end
 
-    it "The visior can delete a shelter and its reviews" do
+    it "The visitor can delete a shelter and its reviews" do
       visit "/shelters/#{@shelter_2.id}"
       click_on "Delete Shelter"
 

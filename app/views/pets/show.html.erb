@@ -8,7 +8,11 @@
 <p>Gender: <%= @pet.sex %></p>
 <p>Adoption Status: <%= @pet.adoption_status %></p>
 <p> Located At: <a href="/shelters/<%= @pet.shelter_id %>"><%= @pet.shelter.name %></a></p>
-
-<%= button_to "Update Pet", "/pets/#{@pet.id}/edit", method:'get' %><br>
-<%= button_to "Delete Pet", "/pets/#{@pet.id}", method:'delete', data: {confirm: "Please confirm you would like to delete #{@pet.name}"} %>
-<%= link_to "View All Applicants", "/pets/#{@pet.id}/applicants" %>
+<% if @pet.approved?  %>
+  <%= button_to "Update Pet", "/pets/#{@pet.id}/edit", method:'get' %><br>
+  <%= link_to "View All Applicants", "/pets/#{@pet.id}/applicants" %>
+<% else %>
+  <%= button_to "Update Pet", "/pets/#{@pet.id}/edit", method:'get' %><br>
+  <%= button_to "Delete Pet", "/pets/#{@pet.id}", method:'delete', data: {confirm: "Please confirm you would like to delete #{@pet.name}"} %>
+  <%= link_to "View All Applicants", "/pets/#{@pet.id}/applicants" %>
+<% end %>
