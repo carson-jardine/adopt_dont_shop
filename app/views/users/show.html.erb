@@ -17,6 +17,7 @@
 <% end %>
 
 <h1>Highlighted Reviews</h1>
+<% if @user.reviews.count > 1 %>
 <section id= 'highlighted-review-<%= @user.id %>' class='highlighted-review'>
   <% @user.highlighted_reviews.each do |highlighted_review| if @user.reviews.count > 0 %>
     <h3><p>Title: <%= highlighted_review.title %></p></h3><br>
@@ -25,5 +26,6 @@
     <p>Reviewed By: <%= highlighted_review.user.name %></p><br>
     <%= image_tag highlighted_review.optional_image if highlighted_review.optional_image %>
   <% end %>
+<% end %>
 <% end %>
 </section>

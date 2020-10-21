@@ -60,7 +60,6 @@ describe 'As a visitor' do
       fill_in "content", with: "This is the best place ever. Come adopt your pet here"
       fill_in "reviewer_name", with: "Mike Dao"
       click_button "Submit Review"
-      require 'pry'; binding.pry
       expect(page).to have_xpath("//img[@src='http://cdn.akc.org/content/article-body-image/black_labrador_retriever_puppies.jpg']")
     end
   end
