@@ -22,30 +22,7 @@ describe 'As a visitor' do
         city:     "Denver",
         state:    "CO",
         zip:      "80213")
-    @review_1 = Review.create!({
-      title: "Best Place Ever",
-      rating: 5,
-      content: "The vets were nice af",
-      optional_image: "https://sayingimages.com/wp-content/uploads/You-Got-It-meme.jpg",
-      reviewer_name: "#{@user_1.name}",
-      user_id: "#{@user_1.id}",
-      shelter_id: "#{@shelter_2.id}"})
-    @review_2 = Review.create!({
-      title: "Worst Place Ever",
-      rating: 1,
-      content: "The vets were stupid af af",
-      optional_image: "https://sayingimages.com/wp-content/uploads/You-Got-It-meme.jpg",
-      reviewer_name: "#{@user_1.name}",
-      user_id: "#{@user_1.id}",
-      shelter_id: "#{@shelter_1.id}"})
-    @review_3 = Review.create!({
-      title: "Medicore Place Ever",
-      rating: 2,
-      content: "The vets were stupid af af",
-      optional_image: "https://sayingimages.com/wp-content/uploads/You-Got-It-meme.jpg",
-      reviewer_name: "#{@user_1.name}",
-      user_id: "#{@user_1.id}",
-      shelter_id: "#{@shelter_1.id}"})
+  
     @pet_1 = Pet.create!(
       image: "http://cdn.akc.org/content/hero/cute_puppies_hero.jpg",
       name:  "Louis",
@@ -128,7 +105,6 @@ describe 'As a visitor' do
       expect(page).to_not have_content('Submit This Application')
     end
 
-
     it "A search will still match when input is partial match" do
       visit "/applications/#{@application.id}"
       fill_in 'search', with: "Lou"
@@ -137,7 +113,7 @@ describe 'As a visitor' do
       expect(page).to have_content("Louis")
     end
 
-    it "show flash message if no description" do 
+    it "show flash message if no description" do
       visit "/applications/#{@application.id}"
       fill_in 'search', with: "#{@pet_1.name}"
       click_button 'Submit'
@@ -145,6 +121,6 @@ describe 'As a visitor' do
       expect(page).to have_content('Submit My Application')
       click_button 'Submit This Application'
       expect(page).to have_content('Fill Out Description')
-    end 
+    end
   end
 end
