@@ -73,8 +73,8 @@ describe 'As a visitor' do
     PetApplication.create!({pet_id: @pet_1.id, application_id: @application_2.id})
     PetApplication.create!({pet_id: @pet_2.id, application_id: @application_2.id})
     PetApplication.create!({pet_id: @pet_1.id, application_id: @application_3.id})
-    PetApplication.create!({pet_id: @pet_3.id, application_id: @application_1.id})
     end
+
     it "The visitor can see a list of applicant names for this pet with a link to the app's show page" do
 
       visit "/pets/#{@pet_1.id}/applicants"
@@ -86,6 +86,10 @@ describe 'As a visitor' do
       click_link("#{@user_2.name}")
       expect(current_path).to eq("/applications/#{@application_2.id}")
 
+    end
+    it "The visitor sees a message when there are no applicants for the pet" do
+      visit "/pets/#{@pet_3.id}/applicants"
+      expect(page).to have_content("There are currently no applicants for #{@pet_3.name}")
     end
   end
 end
