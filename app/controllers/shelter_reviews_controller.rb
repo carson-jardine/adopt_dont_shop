@@ -6,10 +6,14 @@ class ShelterReviewsController < ApplicationController
   end
 
   def create
-
-    @users = User.all
     @shelter = Shelter.find(params[:shelter_id])
-    @review = Review.new(review_params)
+    if User.name_exists?(params[:reviewer_name])
+      @review = Review.new(review_params)
+      @review.user_id = User.find_by(name: params[:reviewer_name]).id
+    else
+      flash[:notice] = "User does not exist. Please enter a valid user name"
+      return render :new
+    end
 
     if @review.save
       redirect_to "/shelters/#{@shelter.id}"

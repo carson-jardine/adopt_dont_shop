@@ -22,19 +22,15 @@ describe 'As a visitor' do
         state:    "CO",
         zip:      "80213"})
 
-      @review_1 = Review.create({
-        title: "Best Place Ever",
-        rating: 5,
-        content: "The vets were nice af",
-        optional_image: "https://sayingimages.com/wp-content/uploads/You-Got-It-meme.jpg",
-        reviewer_name: "#{@user_1.name}",
-        user_id: "#{@user_1.id}",
-        shelter_id: "#{@shelter_2.id}"})
     end
       it 'I can not create a new review without a title' do
         visit "/shelters/#{@shelter_1.id}/reviews/new"
-       click_button "Submit Review"
-       
+        fill_in "rating", with: 5
+        fill_in "content", with: "This is the best place ever. Come adopt your pet here"
+        fill_in "reviewer_name", with: "#{@user_1.name}"
+
+        click_button "Submit Review"
+
         expect(page).to have_content("Review not created: Required information missing.")
         expect(page).to have_button("Submit Review")
       end
