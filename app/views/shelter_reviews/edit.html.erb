@@ -2,16 +2,15 @@
 
   <p>Edit Review:</p>
 
-  <%= label_tag 'Title' %>
-  <%= text_field_tag 'title' %><br/>
+  <%= label_tag "Title" %>
+  <%= text_field_tag 'title', "#{@review.title}" %><br/>
   <%= label_tag 'Rating' %>
-  <%= text_field_tag 'rating' %><br/>
+  <%= text_field_tag 'rating', "#{@review.rating}" %><br/>
   <%= label_tag 'Content' %>
-  <%= text_field_tag 'content' %><br/>
+  <%= text_field_tag 'content', "#{@review.content}" %><br/>
   <%= label_tag 'Reviewer Name' %>
-  <%= text_field_tag 'reviewer_name' %><br/>
+  <%= text_field_tag 'reviewer_name', "#{@review.reviewer_name}" %><br/>
   <%= label_tag 'Optional Image' %>
-  <%= text_field_tag 'optional_image' %><br/>
-
+  <%= text_field_tag 'optional_image', "#{@review.optional_image}" %><br/>
   <%= submit_tag 'Submit Edit' %>
 <% end %>
