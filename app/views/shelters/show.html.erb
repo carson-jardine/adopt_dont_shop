@@ -1,10 +1,13 @@
-
 <h1><%= @shelter.name %></h1>
 <div class="shelter-info">
   <h3>Address:</h3>
   <p><%= @shelter.address %></p>
   <p><%= @shelter.city %>, <%= @shelter.state %></p>
   <p><%= @shelter.zip %></p>
+
+  <h4>Total Pets: <%= @shelter.pets.count %></h4>
+  <h4>Average Rating: <%= @shelter.average_shelter_rating %></h4>
+  <h4>Number of Applications on File: <%= @shelter.total_applications %></h4>
 </div>
 
 <h1>Reviews:</h1>
