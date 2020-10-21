@@ -10,11 +10,11 @@ describe 'As a visitor' do
       fill_in "user[city]",      with: "Denver"
       fill_in "user[state]",     with: "CO"
       fill_in "user[zip]",       with: "80216"
-      
+
       click_button "Create User"
 
       user = User.last
-      
+
       expect(current_path).to eq("/users/#{user.id}")
 
       expect(page).to have_content("#{user.name}")
@@ -25,16 +25,3 @@ describe 'As a visitor' do
     end
   end
 end
-
-
-# As a visitor
-# When I visit '/users/new'
-# I see a form to create a new user
-# When I fill in the form with my
-#   - Name
-#   - Street Address
-#   - City
-#   - State
-#   - Zip
-# Then I am taken to my new user's show page
-# And I see all of the information I entered in the form

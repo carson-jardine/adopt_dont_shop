@@ -37,10 +37,11 @@ describe 'As a visitor' do
       click_on "Edit Review"
       expect(current_path).to eq("/shelters/#{@shelter_2.id}/reviews/#{@review_1.id}/edit")
 
-      fill_in "title",      with: "Worst Place Ever"
-      fill_in "rating",   with: 3
-      fill_in "content",      with: "Don't Come Here"
-      select('Mike Dao', from: 'user_id', match: :first)
+      fill_in "title", with: "Worst Place Ever"
+      fill_in "rating", with: 3
+      fill_in "content", with: "Don't Come Here"
+      fill_in "reviewer_name", with: "#{@user_1.name}"
+
       click_button "Submit Edit"
       expect(current_path).to eq("/shelters/#{@shelter_2.id}")
       expect(page).to have_content("Worst Place Ever")

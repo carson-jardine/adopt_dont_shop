@@ -1,7 +1,6 @@
 <h1>Available Pets!!</h1>
 <%= form_tag "/shelters/#{@shelter.id}/pets" do %>
   <p>Enter a New Pet:</p>
-
   <input type='text' name='pet[image]' value='Pet Image'/><br/>
   <input type='text' name='pet[name]' value='Name'/><br/>
   <input type='text' name='pet[description]' value='Description'/><br/>
