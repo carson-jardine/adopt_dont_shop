@@ -1,15 +1,14 @@
 <h1>All Pets!</h1>
 
 <% @pets.each do |pet| %>
-  <h2><a href="/pets/<%= pet.id %>">Meet <%= pet.name %>!</a></h2>
+  <h2>Meet <%= link_to "#{pet.name}", "/pets/#{pet.id}"%></h2>
   <div class="img">
-    <img src="<%= pet.image %>" />
+    <%= image_tag pet.image %>
   </div>
-
-      <p>Approximate Age: <%= pet.approximate_age %></p>
-      <p>Gender: <%= pet.sex %></p>
-      <p>Located at: <a href="/shelters/<%= pet.shelter_id %>"><%= pet.shelter.name %></a></p>
-    <a href="/pets/<%= pet.id %>/edit">Edit: <%= pet.name %></a>
+    <p>Approximate Age: <%= pet.approximate_age %></p>
+    <p>Gender: <%= pet.sex %></p>
+    <p>Located at: <%= link_to "#{pet.shelter.name}", "/shelters/#{pet.shelter_id}" %></p>
+    <%= link_to "Edit: #{pet.name}", "/pets/#{pet.id}/edit" %>
     <%= link_to name= "Delete: #{pet.name}", "/pets/#{pet.id}", method: 'delete' %>
 <% end %>
 <%= link_to name= "Start an Application", "/applications/new" %>

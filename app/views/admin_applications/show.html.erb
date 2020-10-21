@@ -1,5 +1,5 @@
 <h2>Admin View: Applications</h2>
-<h4>Application For: <%= @application.user.name %></h4>
+<h4>Application For: <%= @application.applicant_name %></h4>
 <h4>Application Status: <%= @application.application_status %> </h4>
 <% @application.pet_applications.each do |pet| %>
   <% if pet.pet_status != nil %>

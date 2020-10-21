@@ -1,4 +1,3 @@
-
 <h1>Hello Friend!</h1>
 <p><%= @user.name %></p>
 <p><%= @user.address %></p>
@@ -10,11 +9,11 @@
 
 <h3>Average Rating: <%= @user.average_user_rating %></h3>
 <% @user.reviews.each do |review| %>
-<h3><p>Title: <%= review.title %></p></h3><br>
-<p>Rating: <%= review.rating %></p><br>
-<p>Content: <%= review.content %></p><br>
-<p>Reviewed By: <%= review.user.name %></p><br>
-<%= image_tag review.optional_image if review.optional_image %>
+  <h3><p>Title: <%= review.title %></p></h3><br>
+  <p>Rating: <%= review.rating %></p><br>
+  <p>Content: <%= review.content %></p><br>
+  <p>Reviewed By: <%= review.user.name %></p><br>
+  <%= image_tag review.optional_image if review.optional_image %>
 <% end %>
 
 <h1>Highlighted Reviews</h1>

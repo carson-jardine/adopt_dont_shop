@@ -1,13 +1,13 @@
-<a href="/shelters/<%= @pet.shelter.id %>">Return to <%= @pet.shelter.name %></a>
+<%= link_to "Return to #{@pet.shelter.name}", "/shelters/#{@pet.shelter.id}" %>
 
 <h1>Hello! I am <%= @pet.name %>!</h1>
+<%= image_tag "#{@pet.image}" %>
 
-<img src= <%= @pet.image %> />
 <p>About Me: <%= @pet.description %></p>
 <p>Approximate Age: <%= @pet.approximate_age %></p>
 <p>Gender: <%= @pet.sex %></p>
 <p>Adoption Status: <%= @pet.adoption_status %></p>
-<p> Located At: <a href="/shelters/<%= @pet.shelter_id %>"><%= @pet.shelter.name %></a></p>
+<p>Located At: <%= link_to "#{@pet.shelter.name}", "/shelters/#{@pet.shelter_id}" %></p>
 <% if @pet.approved?  %>
   <%= button_to "Update Pet", "/pets/#{@pet.id}/edit", method:'get' %><br>
   <%= link_to "View All Applicants", "/pets/#{@pet.id}/applicants" %>

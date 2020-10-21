@@ -1,13 +1,11 @@
-<a href="/shelters/<%= @shelter.id %>">Return to <%= @shelter.name %></a>
-<a href="/shelters/<%= @shelter.id %>/pets/new">Add a New Pet</a>
+<%= link_to "Return to #{@shelter.name}", "/shelters/#{@shelter.id}" %>
+<%= link_to "Add a New Pet", "/shelters/#{@shelter.id}/pets/new" %>
 
 <h1>Available Pets at <%= @shelter.name %>!</h1>
 
 <% @shelter.pets.each do |pet| %>
-  <h2><a href="/pets/<%= pet.id %>">Meet <%= pet.name %>!</a></h2>
-    <img src="<%= pet.image %>" />
-
+  <h2>Meet <%= link_to "#{pet.name}!", "/pets/#{pet.id}" %></h2>
+    <%= image_tag pet.image %>
     <p>Approximate Age: <%= pet.approximate_age %></p>
     <p>Gender: <%= pet.sex %></p>
-
 <% end %>

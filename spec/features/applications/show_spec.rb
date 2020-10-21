@@ -22,7 +22,7 @@ describe 'As a visitor' do
         city:     "Denver",
         state:    "CO",
         zip:      "80213")
-  
+
     @pet_1 = Pet.create!(
       image: "http://cdn.akc.org/content/hero/cute_puppies_hero.jpg",
       name:  "Louis",

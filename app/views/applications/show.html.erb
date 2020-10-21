@@ -15,31 +15,28 @@
 
 <% if @application.application_status == "In Progress"%>
   <h4><p>Add a Pet to this Application</p><h4>
-  <%= form_tag "/applications/#{@application.id}", method: :get do %>
-    <%= label_tag(:search, "search") %>
-    <%= text_field_tag(:search, params[:search]) %>
-    <%= submit_tag ("Submit") %>
-  <%end%>
+    <%= form_tag "/applications/#{@application.id}", method: :get do %>
+      <%= label_tag(:search, "search") %>
+      <%= text_field_tag(:search, params[:search]) %>
+      <%= submit_tag("Submit") %>
+    <%end%>
   <%end%>
 
   <% if !@adoption_pets.nil? %>
-
     <% @adoption_pets.each do |pet| %>
-    <%= pet.name %>
-  <form action=<%="/applications/#{@application.id}"%> method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="PATCH" />
-  <input type='hidden' name='pet_id' value="<%= pet.id%> "/>
-  <input type='submit' value='Adopt this Pet' name='Adopt this Pet'/>
+      <%= pet.name %>
+      <%= form_tag "/applications/#{@application.id}", method: :patch do %>
+        <%= hidden_field_tag :pet_id, "#{pet.id}" %>
+        <%= submit_tag "Adopt this Pet" %>
+      <% end %>
+    <% end %>
   <% end %>
-   <% end %>
-
 
   <% if @application.pets != [] %>
-<h4>Submit My Application</h4>
-<%= form_tag "/applications/#{@application.id}" do %>
-  <%= label_tag 'Why Would You Make A Good Owner?' %>
-  <%= text_field_tag 'Description' %><br/>
-  <%= submit_tag 'Submit This Application' %>
-<% end %>
-<% end %>
+    <h4>Submit My Application</h4>
+    <%= form_tag "/applications/#{@application.id}" do %>
+      <%= label_tag 'Description' %>
+      <%= text_field_tag 'Description' %><br/>
+      <%= submit_tag 'Submit This Application' %>
+    <% end %>
+  <% end %>

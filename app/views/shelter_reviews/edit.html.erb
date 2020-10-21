@@ -1,18 +1,17 @@
+<%= form_tag "/shelters/#{@shelter.id}/reviews/#{@review.id}", method: :patch do %>
 
-<form action="/shelters/<%= @shelter.id %>/reviews/<%= @review.id %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="PATCH" />
   <p>Edit Review:</p>
-  <label for="review[title]"><b>Title:</b></label><br>
-  <input type='text' name='title' value="<%= @review.title %>"/><br/>
-  <label for="review[rating]"><b>Rating:</b></label><br>
-  <input type='text' name='rating' value="<%= @review.rating %>"/><br/>
-  <label for="review[content]"><b>Content:</b></label><br>
-  <input type='text' name='content' value="<%= @review.content %>"/><br/>
-  <label for="review[reviewer_name]"><b>Title:</b></label><br>
-  <input type='text' name='reviewer_name' value="<%= @review.reviewer_name %>"/><br/>
-  <label for="review[optional_image]"><b>Optional Image:</b></label><br>
-  <input type='text' name='optional_image' value="<%= @review.optional_image %>"/><br/>
-  <label for="review[user_id"><b>Select User:</b></label><br>
+
+  <%= label_tag 'Title' %>
+  <%= text_field_tag 'title' %><br/>
+  <%= label_tag 'Rating' %>
+  <%= text_field_tag 'rating' %><br/>
+  <%= label_tag 'Content' %>
+  <%= text_field_tag 'content' %><br/>
+  <%= label_tag 'Reviewer Name' %>
+  <%= text_field_tag 'reviewer_name' %><br/>
+  <%= label_tag 'Optional Image' %>
+  <%= text_field_tag 'optional_image' %><br/>
+
   <%= submit_tag 'Submit Edit' %>
-</form>
+<% end %>

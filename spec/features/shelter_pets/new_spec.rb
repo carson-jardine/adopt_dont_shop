@@ -37,7 +37,7 @@ describe 'As a visitor' do
       pet = Pet.last
       #expect(page).to have_content(pet.name) etc.
       #within helper => research
-      # vvvv model testing 
+      # vvvv model testing
       expect(pet.name).to eq("Louis")
       expect(pet.description).to eq("A very cute floof")
       expect(pet.approximate_age).to eq(2)
