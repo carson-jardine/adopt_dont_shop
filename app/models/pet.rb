@@ -9,4 +9,8 @@ class Pet < ApplicationRecord
       self.where(["name ilike ?", "%#{search}%"])
     end
   end
+
+  def approved?
+    applications.exists?(application_status: "Approved")
+  end
 end
