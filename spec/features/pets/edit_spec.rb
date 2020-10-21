@@ -36,11 +36,11 @@ describe 'As a visitor' do
     it "The visitor can fill in form to update pet info" do
       visit "/pets/#{@pet_2.id}/edit"
 
-      fill_in "pet[image]", with: "http://cdn.akc.org/content/article-body-image/shih_tzu_cute_puppies.jpg"
-      fill_in "pet[name]", with: "Blueberry"
-      fill_in "pet[description]", with: "A little tiny baby dog"
-      fill_in "pet[approximate_age]", with: 1
-      fill_in "pet[sex]", with: "Female"
+      fill_in :image, with: "http://cdn.akc.org/content/article-body-image/shih_tzu_cute_puppies.jpg"
+      fill_in :name, with: "Blueberry"
+      fill_in :description, with: "A little tiny baby dog"
+      fill_in :approximate_age, with: 1
+      fill_in :sex, with: "Female"
       click_on "Submit"
 
       expect(current_path).to eq("/pets/#{@pet_2.id}")

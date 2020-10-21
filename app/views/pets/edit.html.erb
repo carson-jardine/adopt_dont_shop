@@ -1,11 +1,14 @@
-<form action="/pets/<%= @pet.id %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="PATCH" />
+<%= form_tag "/pets/#{@pet.id}", method: :patch do %>
   <p>Edit Pet Info:</p>
-  <input type='text' name='pet[name]' value="<%= @pet.name %>"/><br/>
-  <input type='text' name='pet[image]' value="<%= @pet.image %>"/><br/>
-  <input type='text' name='pet[description]' value="<%= @pet.description %>"/><br/>
-  <input type='text' name='pet[approximate_age]' value="<%= @pet.approximate_age %>"/><br/>
-  <input type='text' name='pet[sex]' value="<%= @pet.sex %>"/><br/>
-  <input type='submit' value = "Submit"/>
-</form>
+  <%= label_tag :name %>
+  <%= text_field_tag :name, "#{@pet.name}" %>
+  <%= label_tag :image %>
+  <%= text_field_tag :image, "#{@pet.image}" %>
+  <%= label_tag :description %>
+  <%= text_field_tag :description, "#{@pet.description}" %>
+  <%= label_tag :approximate_age %>
+  <%= text_field_tag :approximate_age, "#{@pet.approximate_age}" %>
+  <%= label_tag :sex %>
+  <%= text_field_tag :sex, "#{@pet.sex}" %>
+  <%= submit_tag "Submit" %>
+<% end %>
