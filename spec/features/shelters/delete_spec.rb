@@ -59,6 +59,23 @@ describe 'As a visitor' do
         description: 'testtest'
         })
 
+      @review_1 = Review.create({
+        title: "Best Place Ever",
+        rating: 5,
+        content: "The vets were nice af",
+        optional_image: "https://sayingimages.com/wp-content/uploads/You-Got-It-meme.jpg",
+        reviewer_name: "#{@user_1.name}",
+        user_id: "#{@user_1.id}",
+        shelter_id: "#{@shelter_2.id}"})
+      @review_2 = Review.create!({
+        title: "Worst Place Ever",
+        rating: 1,
+        content: "The vets were stupid af af",
+        optional_image: "https://sayingimages.com/wp-content/uploads/You-Got-It-meme.jpg",
+        reviewer_name: "#{@user_1.name}",
+        user_id: "#{@user_1.id}",
+        shelter_id: "#{@shelter_1.id}"})
+
       PetApplication.create!({pet_id: @pet_1.id, application_id: @application_1.id})
       PetApplication.create!({pet_id: @pet_2.id, application_id: @application_2.id})
     end
@@ -80,6 +97,15 @@ describe 'As a visitor' do
       visit "/shelters/#{@shelter_3.id}"
 
       expect(page).to_not have_button("Delete Shelter")
+    end
+
+    it "The visior can delete a shelter and its reviews" do
+      visit "/shelters/#{@shelter_2.id}"
+      click_on "Delete Shelter"
+
+      visit "/users/#{@user_1.id}"
+      expect(page).to_not have_content("#{@review_1.title}")
+      expect(page).to have_content("#{@review_2.title}")
     end
   end
 end
