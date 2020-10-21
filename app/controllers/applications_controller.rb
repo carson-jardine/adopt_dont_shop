@@ -20,6 +20,7 @@ class ApplicationsController < ApplicationController
 
     else
       flash[:notice] = "User does not exist. Please enter a valid user name"
+      return render :new
     end
   end
 

@@ -41,5 +41,15 @@ describe 'As a visitor' do
       application = Application.last
       expect(current_path).to eq("/applications/#{application.id}")
     end
+    it "The visitor can't submit an application form if user name doesn't exist" do
+
+      visit "/applications/new"
+      fill_in "applicant_name", with: "Mike Doo"
+
+      click_button "Submit Application"
+      application = Application.last
+
+      expect(page).to have_content("User does not exist. Please enter a valid user name")
+    end
   end
 end
