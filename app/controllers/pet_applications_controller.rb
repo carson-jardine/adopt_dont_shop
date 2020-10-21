@@ -8,4 +8,8 @@ class PetApplicationsController < ApplicationController
     pet_application.save
     redirect_to "/applications/#{application.id}"
   end
+
+  def index
+    @pet = Pet.find(params[:id])
+  end
 end

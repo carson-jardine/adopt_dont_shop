@@ -11,3 +11,4 @@
 
 <%= button_to "Update Pet", "/pets/#{@pet.id}/edit", method:'get' %><br>
 <%= button_to "Delete Pet", "/pets/#{@pet.id}", method:'delete', data: {confirm: "Please confirm you would like to delete #{@pet.name}"} %>
+<%= link_to "View All Applicants", "/pets/#{@pet.id}/applicants" %>
