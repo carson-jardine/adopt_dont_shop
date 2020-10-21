@@ -1,5 +1,5 @@
-<% if @pet.applications.nil? %>
-  <p>There are currently no applications for <%= @pet.name %></p>
+<% if @pet.applications.empty? %>
+  <p>There are currently no applicants for <%= @pet.name %></p>
 <% else %>
   <h2>Current Applicants for <%= @pet.name %>:</h2>
 
