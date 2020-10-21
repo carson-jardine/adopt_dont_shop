@@ -4,10 +4,9 @@ class AdminApplicationsController < ApplicationController
   end
 
   def update
-
     @application = Application.find(params[:id])
     @application_pet = PetApplication.find_by application_id: params[:id], pet_id: params[:pet_id]
- 
+
     @application_pet.update(pet_status: params[:pet_status])
     @application_pet.save
 
