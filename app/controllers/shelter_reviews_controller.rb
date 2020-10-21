@@ -30,7 +30,7 @@ class ShelterReviewsController < ApplicationController
   end
 
   def update
-  
+
     @users = User.all
     @shelter = Shelter.find(params[:shelter_id])
     @review = Review.find(params[:review_id])
@@ -38,13 +38,13 @@ class ShelterReviewsController < ApplicationController
       @review.assign_attributes(review_params)
     else
       flash[:notice] = "User does not exist. Please enter a valid user name"
-      redirect_to "/shelters/#{@shelter.id}/reviews/#{@review.id}/edit"
+      return render :edit
     end
       if @review.save
-      redirect_to "/shelters/#{@shelter.id}"
+        redirect_to "/shelters/#{@shelter.id}"
       else
         flash[:notice] = "Review not updated: Required information missing"
-        redirect_to "/shelters/#{@shelter.id}/reviews/#{@review.id}/edit"
+        render :edit
       end
   end
 
