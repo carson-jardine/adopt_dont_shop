@@ -37,7 +37,7 @@ describe 'As a visitor' do
       expect(page).to have_content("#{@user_1.name}")
     end
 
-    it "If user does not exist, can't create review do" do
+    it "If user does not exist, can't create review" do
       visit "/shelters/#{@shelter_1.id}"
       click_button "Add Review"
       expect(current_path).to eq("/shelters/#{@shelter_1.id}/reviews/new")
