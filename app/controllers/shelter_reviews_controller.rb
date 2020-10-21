@@ -14,7 +14,6 @@ class ShelterReviewsController < ApplicationController
       flash[:notice] = "User does not exist. Please enter a valid user name"
       return render :new
     end
-
     if @review.save
       redirect_to "/shelters/#{@shelter.id}"
     else
