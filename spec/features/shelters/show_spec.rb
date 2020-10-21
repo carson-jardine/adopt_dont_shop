@@ -116,8 +116,8 @@ describe 'As a visitor' do
     it "User sees shelter statistics" do
       visit "/shelters/#{@shelter_2.id}"
       within (".shelter-info") do
-        expect(page).to have_content("Total Pets: #{@shelter_2.pets.count}")
-        expect(page).to have_content("Average Rating: #{@shelter_2.average_shelter_rating}")
+        expect(page).to have_content("Total Pets: #{@shelter_2.pet_count}")
+        expect(page).to have_content("Average Rating: #{@shelter_2.average_shelter_rating.round(2)}")
         expect(page).to have_content("Number of Applications on File: #{@shelter_2.total_applications}")
       end
     end
