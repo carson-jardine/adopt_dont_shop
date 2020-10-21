@@ -14,6 +14,7 @@ class ApplicationsController < ApplicationController
   def create
     if User.name_exists?(params[:applicant_name])
       @application = Application.new(application_params)
+      @application.assign_attributes({application_status: 'In Progress'})
       @application.user_id = User.find_by(name: params[:applicant_name]).id
       @application.save
       redirect_to "/applications/#{@application.id}"

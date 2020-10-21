@@ -6,7 +6,7 @@
   <p><%= @shelter.zip %></p>
 
   <h4>Total Pets: <%= @shelter.pet_count %></h4>
-  <h4>Average Rating: <%= @shelter.average_shelter_rating %></h4>
+  <h4>Average Rating: <%= @shelter.average_shelter_rating.round(2) %></h4>
   <h4>Number of Applications on File: <%= @shelter.total_applications %></h4>
 </div>
 
