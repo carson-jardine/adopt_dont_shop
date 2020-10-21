@@ -6,7 +6,6 @@ class ShelterReviewsController < ApplicationController
   end
 
   def create
-
     @users = User.all
     @shelter = Shelter.find(params[:shelter_id])
     @review = Review.new(review_params)

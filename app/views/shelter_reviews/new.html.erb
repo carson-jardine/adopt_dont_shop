@@ -7,7 +7,8 @@
   <%= text_field_tag 'rating' %><br/>
   <%= label_tag 'Content' %>
   <%= text_field_tag 'content' %><br/>
- <%= select_tag 'user_id', options_from_collection_for_select(@users, :id, :name), class: 'form-select'%>
+  <%= label_tag 'Reviewer Name' %>
+  <%= text_field_tag 'reviewer_name' %><br/>
   <%= label_tag 'Optional Image' %>
   <%= text_field_tag 'optional_image' %><br/>
   <%= submit_tag 'Submit Review' %>

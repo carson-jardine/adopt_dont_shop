@@ -5,4 +5,7 @@ class Review < ApplicationRecord
   validates_presence_of :title
   validates_presence_of :rating
   validates_presence_of :content
+
+  validates :reviewer_name, if: User.exists?(name: params[:reviewer_name])
+
 end

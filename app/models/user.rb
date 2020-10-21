@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   validates_presence_of :name
   has_many :reviews
-  has_many :applications 
+  has_many :applications
 
   def highlighted_reviews
       reviews.minmax_by do |review|
@@ -12,4 +12,11 @@ class User < ApplicationRecord
   def average_user_rating
     reviews.average(:rating)
   end
+
+  def self.db_names
+    self.all.map do |user|
+      user.name
+    end
+  end
+
 end
