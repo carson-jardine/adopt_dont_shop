@@ -10,6 +10,6 @@ class PetApplicationsController < ApplicationController
   end
 
   def index
-    
+    @pet = Pet.find(params[:id])
   end
 end

@@ -1,0 +1,9 @@
+<% if @pet.applications.nil? %>
+  <p>There are currently no applications for <%= @pet.name %></p>
+<% else %>
+  <h2>Current Applicants for <%= @pet.name %>:</h2>
+
+  <% @pet.applications.each do |app| %>
+    <%= link_to "#{app.user.name}", "/applications/#{app.id}" %>
+  <% end %>
+<% end %>
