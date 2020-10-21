@@ -33,14 +33,21 @@ describe 'As a visitor' do
     end
       it 'I can not edit a review without a title/content or rating' do
         visit "/shelters/#{@shelter_1.id}/reviews/#{@review_1.id}/edit"
-        fill_in "title",      with: ""
+
+        fill_in "rating", with: 5
+        fill_in "content", with: "This is the best place ever. Come adopt your pet here"
+        fill_in "reviewer_name", with: "#{@user_1.name}"
+
         click_button "Submit Edit"
         expect(page).to have_content("Review not updated: Required information missing")
         expect(page).to have_button("Submit Edit")
       end
       it 'I can not edit a review without a name that is in the database' do
         visit "/shelters/#{@shelter_1.id}/reviews/#{@review_1.id}/edit"
-        fill_in "reviewer_name",      with: "Cheeze-Head"
+        fill_in "title", with: "GREAT!"
+        fill_in "rating", with: 5
+        fill_in "content", with: "This is the best place ever. Come adopt your pet here"
+        fill_in "reviewer_name", with: "Cheeze-Head"
         click_button "Submit Edit"
         expect(page).to have_content("User does not exist. Please enter a valid user name")
       end
