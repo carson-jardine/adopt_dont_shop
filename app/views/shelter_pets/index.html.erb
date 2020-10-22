@@ -1,4 +1,4 @@
-<%= button_to "Return to #{@shelter.name}", "/shelters/#{@shelter.id}" %>
+<%= link_to "Return to #{@shelter.name}", "/shelters/#{@shelter.id}" %>
 <%= link_to "Add a New Pet", "/shelters/#{@shelter.id}/pets/new" %>
 
 <h1>Available Pets at <%= @shelter.name %>!</h1>
