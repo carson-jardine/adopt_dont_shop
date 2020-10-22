@@ -16,7 +16,7 @@
       <% single_app.application_status %>
     <% end %>
 
-    <% if @the_answer.flatten.include?("Approved") %>
+    <% if @the_answer.flatten.include?("Approved") && pet.pet_status != "Approved" %>
       <p><%= pet.pet.name %> has already been approved for adoption</p>
     <% elsif pet.pet_status == nil && !@the_answer.include?("Approved") %>
       <%= pet.pet.name %>

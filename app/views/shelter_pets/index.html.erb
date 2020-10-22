@@ -5,7 +5,7 @@
 
 <% @shelter.pets.each do |pet| %>
   <h2>Meet <%= link_to "#{pet.name}!", "/pets/#{pet.id}" %></h2>
-    <%= image_tag pet.image %>
+    <%= image_tag pet.image  %>
     <p>Approximate Age: <%= pet.approximate_age %></p>
     <p>Gender: <%= pet.sex %></p>
 <% end %>
