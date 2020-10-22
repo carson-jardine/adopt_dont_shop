@@ -7,7 +7,7 @@
 
 <h1>User Reviews: </h1>
 
-<h3>Average Rating: <%= @user.average_user_rating.round(2) %></h3>
+<h3>Average Rating: <%= @user.average_user_rating %></h3>
 <% @user.reviews.each do |review| %>
   <h3><p>Title: <%= review.title %></p></h3><br>
   <p>Rating: <%= review.rating %></p><br>
