@@ -32,7 +32,7 @@
     <% end %>
   <% end %>
 
-  <% if @application.pets != [] %>
+  <% if @application.pets != [] && @application.application_status == "In Progress" %>
     <h4>Submit My Application</h4>
     <%= form_tag "/applications/#{@application.id}" do %>
       <%= label_tag 'Why would you make a good pet owner?' %>
