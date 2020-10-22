@@ -20,7 +20,6 @@
       <%= text_field_tag(:search, params[:search]) %>
       <%= submit_tag("Submit") %>
     <%end%>
-  <%end%>
 
   <% if !@adoption_pets.nil? %>
     <% @adoption_pets.each do |pet| %>
@@ -40,3 +39,4 @@
       <%= submit_tag 'Submit This Application' %>
     <% end %>
   <% end %>
+<% end %>
