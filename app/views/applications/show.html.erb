@@ -35,7 +35,7 @@
   <% if @application.pets != [] %>
     <h4>Submit My Application</h4>
     <%= form_tag "/applications/#{@application.id}" do %>
-      <%= label_tag 'Description' %>
+      <%= label_tag 'Why would you make a good pet owner?' %>
       <%= text_field_tag 'Description' %><br/>
       <%= submit_tag 'Submit This Application' %>
     <% end %>
